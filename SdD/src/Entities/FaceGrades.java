@@ -8,25 +8,23 @@ public class FaceGrades {
 	private double al2o3;
 	private double mn;
 	private double p;
-	private double ppc;
-	private double mais50mm;
-	private double mais6_3mm;
-	private double mais0_15mm;
+	private double loi;
+	private double more50mm;
+	private double more6_3mm;
+	private double more0_15mm;
 	
-	
-
-	public FaceGrades(String face, double fe, double sio2, double al2o3, double mn, double p, double ppc,
-			double mais50mm, double mais6_3mm, double mais0_15mm) {
+	public FaceGrades(String face, double fe, double sio2, double al2o3, double mn, double p, double loi,
+			double more50mm, double more6_3mm, double more0_15mm) {
 		this.face = face;
 		this.fe = fe;
 		this.sio2 = sio2;
 		this.al2o3 = al2o3;
 		this.mn = mn;
 		this.p = p;
-		this.ppc = ppc;
-		this.mais50mm = mais50mm;
-		this.mais6_3mm = mais6_3mm;
-		this.mais0_15mm = mais0_15mm;
+		this.loi = loi;
+		this.more50mm = more50mm;
+		this.more6_3mm = more6_3mm;
+		this.more0_15mm = more0_15mm;
 	}
 
 	public String getFace() {
@@ -77,36 +75,40 @@ public class FaceGrades {
 		this.p = p;
 	}
 
-	public double getPpc() {
-		return ppc;
+	public double getLoi() {
+		return loi;
 	}
 
-	public void setPpc(double ppc) {
-		this.ppc = ppc;
+	public void setLoi(double loi) {
+		this.loi = loi;
 	}
 
-	public double getMais50mm() {
-		return mais50mm;
+	public double getMore50mm() {
+		return more50mm;
 	}
 
-	public void setMais50mm(double mais50mm) {
-		this.mais50mm = mais50mm;
+	public void setMore50mm(double more50mm) {
+		this.more50mm = more50mm;
 	}
 
-	public double getMais6_3mm() {
-		return mais6_3mm;
+	public double getMore6_3mm() {
+		return more6_3mm;
 	}
 
-	public void setMais6_3mm(double mais6_3mm) {
-		this.mais6_3mm = mais6_3mm;
+	public void setMore6_3mm(double more6_3mm) {
+		this.more6_3mm = more6_3mm;
 	}
 
-	public double getMais0_15mm() {
-		return mais0_15mm;
+	public double getMore0_15mm() {
+		return more0_15mm;
 	}
 
-	public void setMais0_15mm(double mais0_15mm) {
-		this.mais0_15mm = mais0_15mm;
+	public void setMore0_15mm(double more0_15mm) {
+		this.more0_15mm = more0_15mm;
 	}
+	
+	
+	
+
 	
 }

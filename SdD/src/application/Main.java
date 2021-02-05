@@ -1,5 +1,6 @@
 package application;
 import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,6 +21,7 @@ public class Main extends Application {
 			scrollPane.setFitToWidth(true);
 
 			mainScene = new Scene(scrollPane);
+			
 			primaryStage.setScene(mainScene);
 			primaryStage.setTitle("Dispatch System");
 			primaryStage.show();

@@ -3,137 +3,167 @@ package Entities;
 public class CycleTime {
 	
 	private String face;
-	private double c1;
-	private double c2;
-	private double c3;
-	private double c4;
-	private double c5;
-	private double c6;
-	private double c7;
-	private double c8;
-	private double c9;
-	private double c10;
-	private double c11;
-	private double c12;
+	private double t1;
+	private double t2;
+	private double t3;
+	private double t4;
+	private double t5;
+	private double t6;
+	private double t7;
+	private double t8;
+	private double t9;
+	private double t10;
+	private double t11;
+	private double t12;
 	
-	public CycleTime(String face, double c1, double c2, double c3, double c4, double c5, double c6, double c7,
-			double c8, double c9, double c10, double c11, double c12) {
+	
+	public CycleTime(String face, double t1, double t2, double t3, double t4, double t5, double t6, double t7,
+			double t8, double t9, double t10, double t11, double t12) {
 		this.face = face;
-		this.c1 = c1;
-		this.c2 = c2;
-		this.c3 = c3;
-		this.c4 = c4;
-		this.c5 = c5;
-		this.c6 = c6;
-		this.c7 = c7;
-		this.c8 = c8;
-		this.c9 = c9;
-		this.c10 = c10;
-		this.c11 = c11;
-		this.c12 = c12;
+		this.t1 = t1;
+		this.t2 = t2;
+		this.t3 = t3;
+		this.t4 = t4;
+		this.t5 = t5;
+		this.t6 = t6;
+		this.t7 = t7;
+		this.t8 = t8;
+		this.t9 = t9;
+		this.t10 = t10;
+		this.t11 = t11;
+		this.t12 = t12;
 	}
+
 
 	public String getFace() {
 		return face;
 	}
 
+
 	public void setFace(String face) {
 		this.face = face;
 	}
 
-	public double getC1() {
-		return c1;
+
+	public double getT1() {
+		return t1;
 	}
 
-	public void setC1(double c1) {
-		this.c1 = c1;
+
+	public void setT1(double t1) {
+		this.t1 = t1;
 	}
 
-	public double getC2() {
-		return c2;
+
+	public double getT2() {
+		return t2;
 	}
 
-	public void setC2(double c2) {
-		this.c2 = c2;
+
+	public void setT2(double t2) {
+		this.t2 = t2;
 	}
 
-	public double getC3() {
-		return c3;
+
+	public double getT3() {
+		return t3;
 	}
 
-	public void setC3(double c3) {
-		this.c3 = c3;
+
+	public void setT3(double t3) {
+		this.t3 = t3;
 	}
 
-	public double getC4() {
-		return c4;
+
+	public double getT4() {
+		return t4;
 	}
 
-	public void setC4(double c4) {
-		this.c4 = c4;
+
+	public void setT4(double t4) {
+		this.t4 = t4;
 	}
 
-	public double getC5() {
-		return c5;
+
+	public double getT5() {
+		return t5;
 	}
 
-	public void setC5(double c5) {
-		this.c5 = c5;
+
+	public void setT5(double t5) {
+		this.t5 = t5;
 	}
 
-	public double getC6() {
-		return c6;
+
+	public double getT6() {
+		return t6;
 	}
 
-	public void setC6(double c6) {
-		this.c6 = c6;
+
+	public void setT6(double t6) {
+		this.t6 = t6;
 	}
 
-	public double getC7() {
-		return c7;
+
+	public double getT7() {
+		return t7;
 	}
 
-	public void setC7(double c7) {
-		this.c7 = c7;
+
+	public void setT7(double t7) {
+		this.t7 = t7;
 	}
 
-	public double getC8() {
-		return c8;
+
+	public double getT8() {
+		return t8;
 	}
 
-	public void setC8(double c8) {
-		this.c8 = c8;
+
+	public void setT8(double t8) {
+		this.t8 = t8;
 	}
 
-	public double getC9() {
-		return c9;
+
+	public double getT9() {
+		return t9;
 	}
 
-	public void setC9(double c9) {
-		this.c9 = c9;
+
+	public void setT9(double t9) {
+		this.t9 = t9;
 	}
 
-	public double getC10() {
-		return c10;
+
+	public double getT10() {
+		return t10;
 	}
 
-	public void setC10(double c10) {
-		this.c10 = c10;
+
+	public void setT10(double t10) {
+		this.t10 = t10;
 	}
 
-	public double getC11() {
-		return c11;
+
+	public double getT11() {
+		return t11;
 	}
 
-	public void setC11(double c11) {
-		this.c11 = c11;
+
+	public void setT11(double t11) {
+		this.t11 = t11;
 	}
 
-	public double getC12() {
-		return c12;
+
+	public double getT12() {
+		return t12;
 	}
 
-	public void setC12(double c12) {
-		this.c12 = c12;
-	}	
+
+	public void setT12(double t12) {
+		this.t12 = t12;
+	}
+	
+	
+	
 }

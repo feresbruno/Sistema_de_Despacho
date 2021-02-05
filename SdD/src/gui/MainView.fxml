@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -9,14 +12,19 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="913.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+<ScrollPane prefHeight="943.0" prefWidth="1484.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
 	<content>
-		<VBox prefHeight="773.0" prefWidth="1250.0">
+		<VBox prefHeight="904.0" prefWidth="1470.0">
 			<children>
 				<MenuBar prefHeight="26.0" prefWidth="705.0">
 					<menus>
@@ -27,9 +35,10 @@
 						</Menu>
 						<Menu mnemonicParsing="false" text="Import Data">
 							<items>
-								<MenuItem fx:id="menuItemImportMinePlan" mnemonicParsing="false" onAction="#onMenuItemImportMinePlanAction" text="Mine Plan" />
+								<MenuItem fx:id="menuItemImportFaceProduction" mnemonicParsing="false" onAction="#onMenuItemImportFaceProductionAction" text="Cycle Time" />
 								<MenuItem fx:id="menuItemImportFaceGrades" mnemonicParsing="false" onAction="#onMenuItemImportFaceGradesAction" text="Face Grades" />
-								<MenuItem fx:id="menuItemImportFaceProduction" mnemonicParsing="false" onAction="#onMenuItemImportFaceProductionAction" text="Face Production" />
+								<MenuItem fx:id="menuItemImportMinePlan" mnemonicParsing="false" onAction="#onMenuItemImportMinePlanAction" text="Mine Plan" />
+                        <MenuItem mnemonicParsing="false" text="Plant Boundaries" />
 								<MenuItem fx:id="menuItemImportTrucksCapacity" mnemonicParsing="false" onAction="#onMenuItemImportTrucksCapacityAction" text="Truck's Capacity" />
 							</items>
 						</Menu>
@@ -40,203 +49,536 @@
 						</Menu>
 					</menus>
 				</MenuBar>
-				<AnchorPane layoutX="6.0" prefHeight="898.0" prefWidth="1638.0">
+				<AnchorPane layoutX="6.0" pickOnBounds="false" prefHeight="865.0" prefWidth="1470.0">
 					<children>
-						<Button fx:id="btInicio" layoutX="778.0" layoutY="10.0" mnemonicParsing="false" onAction="#onBtInicioAction" text="Start" />
-						<TextArea fx:id="txtArea1" layoutX="780.0" layoutY="79.0" prefHeight="33.0" prefWidth="95.0" />
-						<TextArea fx:id="txtArea2" layoutX="780.0" layoutY="124.0" prefHeight="33.0" prefWidth="95.0" />
-						<TextArea fx:id="txtArea3" layoutX="780.0" layoutY="169.0" prefHeight="33.0" prefWidth="95.0" />
-						<TextArea fx:id="txtArea4" layoutX="780.0" layoutY="214.0" prefHeight="33.0" prefWidth="95.0" />
-						<TextArea fx:id="txtArea5" layoutX="780.0" layoutY="259.0" prefHeight="33.0" prefWidth="95.0" />
-						<TextArea fx:id="txtArea6" layoutX="905.0" layoutY="79.0" prefHeight="33.0" prefWidth="95.0" />
-						<TextArea fx:id="txtArea7" layoutX="905.0" layoutY="124.0" prefHeight="33.0" prefWidth="95.0" />
-						<TableView fx:id="tableViewMinePlans" layoutX="15.0" layoutY="22.0" prefHeight="210.0" prefWidth="505.0">
+						<TableView fx:id="tableViewMinePlans" layoutX="14.0" layoutY="55.0" prefHeight="170.0" prefWidth="520.0">
 							<columnResizePolicy>
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
 							<columns>
-								<TableColumn fx:id="tableColumnFace" prefWidth="50.0" text="Face" />
-								<TableColumn fx:id="tableColumnC1" prefWidth="50.0" text="T1" />
-								<TableColumn fx:id="tableColumnC2" prefWidth="50.0" text="T2" />
-								<TableColumn fx:id="tableColumnC3" prefWidth="50.0" text="T3" />
-								<TableColumn fx:id="tableColumnC4" prefWidth="50.0" text="T4" />
-								<TableColumn fx:id="tableColumnC5" prefWidth="50.0" text="T5" />
-								<TableColumn fx:id="tableColumnC6" prefWidth="50.0" text="T6" />
-								<TableColumn fx:id="tableColumnC7" prefWidth="50.0" text="T7" />
-								<TableColumn fx:id="tableColumnC8" prefWidth="50.0" text="T8" />
-								<TableColumn fx:id="tableColumnC9" prefWidth="50.0" text="T9" />
-								<TableColumn fx:id="tableColumnC10" prefWidth="50.0" text="T10" />
-								<TableColumn fx:id="tableColumnC11" prefWidth="50.0" text="T11" />
-								<TableColumn fx:id="tableColumnC12" prefWidth="50.0" text="T12" />
+								<TableColumn fx:id="tableColumnFace" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Face" />
+								<TableColumn fx:id="tableColumnT1" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T1" />
+								<TableColumn fx:id="tableColumnT2" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T2" />
+								<TableColumn fx:id="tableColumnT3" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T3" />
+								<TableColumn fx:id="tableColumnT4" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T4" />
+								<TableColumn fx:id="tableColumnT5" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T5" />
+								<TableColumn fx:id="tableColumnT6" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T6" />
+								<TableColumn fx:id="tableColumnT7" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T7" />
+								<TableColumn fx:id="tableColumnT8" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T8" />
+								<TableColumn fx:id="tableColumnT9" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T9" />
+								<TableColumn fx:id="tableColumnT10" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T10" />
+								<TableColumn fx:id="tableColumnT11" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T11" />
+								<TableColumn fx:id="tableColumnT12" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T12" />
 							</columns>
 						</TableView>
-						<TableView fx:id="tableViewProgrammedProduction" layoutX="522.0" layoutY="359.0" prefHeight="191.0" prefWidth="174.0">
+						<TableView fx:id="tableViewFaceGrades" layoutX="22.0" layoutY="563.0" prefHeight="170.0" prefWidth="684.0">
 							<columnResizePolicy>
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
 							<columns>
-								<TableColumn fx:id="tableColumnProd" prefWidth="50.0" text="Production" />
+								<TableColumn fx:id="tableColumnFaceG" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Face" />
+								<TableColumn fx:id="tableColumnGFe" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Fe" />
+								<TableColumn fx:id="tableColumnGSiO2" prefWidth="50.0" style="-fx-alignment: CENTER;" text="SiO2" />
+								<TableColumn fx:id="tableColumnGAl2O3" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Al2O3" />
+								<TableColumn fx:id="tableColumnGMn" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Mn" />
+								<TableColumn fx:id="tableColumnGP" prefWidth="50.0" style="-fx-alignment: CENTER;" text="P" />
+								<TableColumn fx:id="tableColumnGLOI" prefWidth="50.0" style="-fx-alignment: CENTER;" text="LOI" />
+								<TableColumn fx:id="tableColumnG50mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+50,00mm" />
+								<TableColumn fx:id="tableColumnG6_3mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+6,30mm" />
+								<TableColumn fx:id="tableColumnG0_15mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+0,15mm" />
 							</columns>
 						</TableView>
-						<TableView fx:id="tableViewFaceGrades" layoutX="14.0" layoutY="598.0" prefHeight="150.0" prefWidth="684.0">
+						<Label layoutX="33.0" layoutY="545.0" text="Face Grades (%)">
+							<font>
+								<Font name="System Bold" size="12.0" />
+							</font>
+						</Label>
+						<Label layoutX="24.0" layoutY="37.0" text="Mine Plan">
+							<font>
+								<Font name="System Bold" size="12.0" />
+							</font>
+						</Label>
+						<TableView fx:id="tableViewTrucksCapacity" layoutX="54.0" layoutY="262.0" prefHeight="51.0" prefWidth="480.0">
 							<columnResizePolicy>
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
 							<columns>
-								<TableColumn fx:id="tableColumnFaceG" prefWidth="50.0" text="Face" />
-								<TableColumn fx:id="tableColumnGFe" prefWidth="50.0" text="Fe" />
-								<TableColumn fx:id="tableColumnGSiO2" prefWidth="50.0" text="SiO2" />
-								<TableColumn fx:id="tableColumnGAl2O3" prefWidth="50.0" text="Al2O3" />
-								<TableColumn fx:id="tableColumnGMn" prefWidth="50.0" text="Mn" />
-								<TableColumn fx:id="tableColumnGP" prefWidth="50.0" text="P" />
-								<TableColumn fx:id="tableColumnGPPC" prefWidth="50.0" text="PPC" />
-								<TableColumn fx:id="tableColumnG50mm" prefWidth="50.0" text="+50,00mm" />
-								<TableColumn fx:id="tableColumnG6_3mm" prefWidth="50.0" text="+6,30mm" />
-								<TableColumn fx:id="tableColumnG0_15mm" prefWidth="50.0" text="+0,15mm" />
+								<TableColumn fx:id="tableColumnt1" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T1" />
+                        		<TableColumn fx:id="tableColumnt2" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T2" />
+								<TableColumn fx:id="tableColumnt3" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T3" />
+								<TableColumn fx:id="tableColumnt4" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T4" />
+								<TableColumn fx:id="tableColumnt5" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T5" />
+								<TableColumn fx:id="tableColumnt6" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T6" />
+								<TableColumn fx:id="tableColumnt7" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T7" />
+								<TableColumn fx:id="tableColumnt8" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T8" />
+								<TableColumn fx:id="tableColumnt9" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T9" />
+								<TableColumn fx:id="tableColumnt10" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T10" />
+								<TableColumn fx:id="tableColumnt11" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T11" />
+								<TableColumn fx:id="tableColumnt12" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T12" />
 							</columns>
 						</TableView>
-						<Label layoutX="25.0" layoutY="580.0" text="Face Grades (%)">
+						<Label layoutX="63.0" layoutY="245.0" text="Truck Capacities (t)">
 							<font>
 								<Font name="System Bold" size="12.0" />
 							</font>
 						</Label>
-						<Label layoutX="25.0" layoutY="4.0" text="Mine Plan">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<Label layoutX="521.0" layoutY="341.0" text="Programmed Production (t)">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<Label layoutX="788.0" layoutY="59.0" text="Ore Faces">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<Label layoutX="903.0" layoutY="59.0" text="Waste Faces">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<TableView fx:id="tableViewTrucksCapacity" layoutX="52.0" layoutY="261.0" prefHeight="66.0" prefWidth="470.0">
+						<Button fx:id="btImporMinePlan" layoutX="572.0" layoutY="93.0" mnemonicParsing="false" onAction="#onBtImportMinePlan" prefHeight="26.0" prefWidth="106.0" text="Mine Plan" />
+						<TableView fx:id="tableViewCycleTime" layoutX="22.0" layoutY="355.0" prefHeight="170.0" prefWidth="520.0">
 							<columnResizePolicy>
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
 							<columns>
-								<TableColumn fx:id="tableColumnT1" prefWidth="50.0" text="T1" />
-                        <TableColumn fx:id="tableColumnT2" prefWidth="75.0" text="T2" />
-								<TableColumn fx:id="tableColumnT3" prefWidth="50.0" text="T3" />
-								<TableColumn fx:id="tableColumnT4" prefWidth="50.0" text="T4" />
-								<TableColumn fx:id="tableColumnT5" prefWidth="50.0" text="T5" />
-								<TableColumn fx:id="tableColumnT6" prefWidth="50.0" text="T6" />
-								<TableColumn fx:id="tableColumnT7" prefWidth="50.0" text="T7" />
-								<TableColumn fx:id="tableColumnT8" prefWidth="50.0" text="T8" />
-								<TableColumn fx:id="tableColumnT9" prefWidth="50.0" text="T9" />
-								<TableColumn fx:id="tableColumnT10" prefWidth="50.0" text="T10" />
-								<TableColumn fx:id="tableColumnT11" prefWidth="50.0" text="T11" />
-								<TableColumn fx:id="tableColumnT12" prefWidth="50.0" text="T12" />
+								<TableColumn fx:id="tableColumnFaceCT" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Face" />
+								<TableColumn fx:id="tableColumnCT1" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T1" />
+								<TableColumn fx:id="tableColumnCT2" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T2" />
+								<TableColumn fx:id="tableColumnCT3" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T3" />
+								<TableColumn fx:id="tableColumnCT4" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T4" />
+								<TableColumn fx:id="tableColumnCT5" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T5" />
+								<TableColumn fx:id="tableColumnCT6" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T6" />
+								<TableColumn fx:id="tableColumnCT7" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T7" />
+								<TableColumn fx:id="tableColumnCT8" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T8" />
+								<TableColumn fx:id="tableColumnCT9" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T9" />
+								<TableColumn fx:id="tableColumnCT10" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T10" />
+								<TableColumn fx:id="tableColumnCT11" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T11" />
+								<TableColumn fx:id="tableColumnCT12" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T12" />
 							</columns>
 						</TableView>
-						<Label layoutX="66.0" layoutY="243.0" text="Trucks's Capacity (t)">
+						<Label layoutX="32.0" layoutY="337.0" text="Cycle Time (min)">
 							<font>
 								<Font name="System Bold" size="12.0" />
 							</font>
 						</Label>
-						<Label layoutX="761.0" layoutY="79.0" prefHeight="0.0" prefWidth="18.0" text="O1">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<Label layoutX="761.0" layoutY="124.0" text="O2">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<Label layoutX="761.0" layoutY="169.0" text="O3">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<Label layoutX="761.0" layoutY="214.0" text="O4">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<Label layoutX="761.0" layoutY="259.0" text="O5">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<Label layoutX="885.0" layoutY="79.0" text="W1">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<Label layoutX="885.0" layoutY="124.0" text="W2">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<Button fx:id="btImporMinePlan" layoutX="584.0" layoutY="81.0" mnemonicParsing="false" onAction="#onBtImportMinePlan" prefHeight="26.0" prefWidth="106.0" text="Mine Plan" />
-						<TableView fx:id="tableViewCycleTime" layoutX="14.0" layoutY="359.0" prefHeight="191.0" prefWidth="508.0">
+						<TableView fx:id="tableViewPlantBoundaries" layoutX="23.0" layoutY="771.0" prefHeight="74.0" prefWidth="682.0">
 							<columnResizePolicy>
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
 							<columns>
-								<TableColumn fx:id="tableColumnFaceCT" prefWidth="75.0" text="Face" />
-								<TableColumn fx:id="tableColumnCT1" prefWidth="75.0" text="T1" />
-								<TableColumn fx:id="tableColumnCT2" prefWidth="75.0" text="T2" />
-								<TableColumn fx:id="tableColumnCT3" prefWidth="75.0" text="T3" />
-								<TableColumn fx:id="tableColumnCT4" prefWidth="75.0" text="T4" />
-								<TableColumn fx:id="tableColumnCT5" prefWidth="75.0" text="T5" />
-								<TableColumn fx:id="tableColumnCT6" prefWidth="50.0" text="T6" />
-								<TableColumn fx:id="tableColumnCT7" prefWidth="50.0" text="T7" />
-								<TableColumn fx:id="tableColumnCT8" prefWidth="50.0" text="T8" />
-								<TableColumn fx:id="tableColumnCT9" prefWidth="50.0" text="T9" />
-								<TableColumn fx:id="tableColumnCT10" prefWidth="50.0" text="T10" />
-								<TableColumn fx:id="tableColumnCT11" prefWidth="50.0" text="T11" />
-								<TableColumn fx:id="tableColumnCT12" prefWidth="50.0" text="T12" />
+								<TableColumn fx:id="tableColumnLimits" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Boundaries" />
+								<TableColumn fx:id="tableColumnBFe" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Fe" />
+								<TableColumn fx:id="tableColumnBSiO2" prefWidth="50.0" style="-fx-alignment: CENTER;" text="SiO2" />
+								<TableColumn fx:id="tableColumnBAl2O3" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Al2O3" />
+								<TableColumn fx:id="tableColumnBMn" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Mn" />
+								<TableColumn fx:id="tableColumnBP" prefWidth="50.0" style="-fx-alignment: CENTER;" text="P" />
+								<TableColumn fx:id="tableColumnBLOI" prefWidth="50.0" style="-fx-alignment: CENTER;" text="LOI" />
+								<TableColumn fx:id="tableColumnB50mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+50,00mm" />
+								<TableColumn fx:id="tableColumnB6_3mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+6,30mm" />
+								<TableColumn fx:id="tableColumnB0_15mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+0,15mm" />
 							</columns>
 						</TableView>
-						<Label layoutX="24.0" layoutY="341.0" text="Cycle Time (min)">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<TableView fx:id="tableViewPlantBoundaries" layoutX="15.0" layoutY="777.0" prefHeight="70.0" prefWidth="682.0">
-							<columnResizePolicy>
-								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-							</columnResizePolicy>
-							<columns>
-								<TableColumn fx:id="tableColumnLimits" prefWidth="50.0" text="Boundaries" />
-								<TableColumn fx:id="tableColumnBFe" prefWidth="50.0" text="Fe" />
-								<TableColumn fx:id="tableColumnBSiO2" prefWidth="50.0" text="SiO2" />
-								<TableColumn fx:id="tableColumnBAl2O3" prefWidth="50.0" text="Al2O3" />
-								<TableColumn fx:id="tableColumnBMn" prefWidth="50.0" text="Mn" />
-								<TableColumn fx:id="tableColumnBP" prefWidth="50.0" text="P" />
-								<TableColumn fx:id="tableColumnBPPC" prefWidth="50.0" text="PPC" />
-								<TableColumn fx:id="tableColumnB50mm" prefWidth="50.0" text="+50,00mm" />
-								<TableColumn fx:id="tableColumnB6_3mm" prefWidth="50.0" text="+6,30mm" />
-								<TableColumn fx:id="tableColumnB0_15mm" prefWidth="50.0" text="+0,15mm" />
-							</columns>
-						</TableView>
-                  <Label layoutX="24.0" layoutY="759.0" text="Plant Boundaries (%)">
+                  <Label layoutX="32.0" layoutY="753.0" text="Plant Boundaries (%)">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Line endY="746.4000244140625" layoutX="727.0" layoutY="99.0" startY="-86.39999389648438" />
-                  <Button fx:id="btImporTrucksCapacity" layoutX="584.0" layoutY="111.0" mnemonicParsing="false" onAction="#onbtImporTrucksCapacity" prefWidth="106.0" text="Truck's Capacity" />
-                  <Label layoutX="572.0" layoutY="49.0" prefHeight="18.0" prefWidth="86.0" text="Click to import:" />
-                  <Button fx:id="btImporCycleTime" layoutX="584.0" layoutY="141.0" mnemonicParsing="false" onAction="#onBtImportCycleTime" prefHeight="26.0" prefWidth="106.0" text="Cycle Time" />
-                  <Button fx:id="btImporFaceGrades" layoutX="584.0" layoutY="201.0" mnemonicParsing="false" onAction="#onBtImportFaceGrades" prefHeight="26.0" prefWidth="106.0" text="Face Grades" />
-                  <Button fx:id="btImporPlantBoundaries" layoutX="584.0" layoutY="231.0" mnemonicParsing="false" onAction="#onBtImportPlantBoundaries" prefHeight="26.0" prefWidth="106.0" text="Plant Boundaries" />
-                  <Button fx:id="btImporProgrammedProduction" layoutX="584.0" layoutY="171.0" mnemonicParsing="false" onAction="#onBtImportProgrammedProduction" prefHeight="26.0" prefWidth="106.0" text="Production" />
+                  <Line endY="735.0" layoutX="727.0" layoutY="113.0" startY="-100.39999389648438" />
+                  <Button fx:id="btImporTrucksCapacity" layoutX="572.0" layoutY="130.0" mnemonicParsing="false" onAction="#onbtImporTrucksCapacity" prefWidth="106.0" text="Truck's Capacity" />
+                  <Label layoutX="548.0" layoutY="63.0" prefHeight="18.0" prefWidth="110.0" text="Click to import the:" />
+                  <Button fx:id="btImporCycleTime" layoutX="572.0" layoutY="167.0" mnemonicParsing="false" onAction="#onBtImportCycleTime" prefHeight="26.0" prefWidth="106.0" text="Cycle Time" />
+                  <Button fx:id="btImporFaceGrades" layoutX="572.0" layoutY="241.0" mnemonicParsing="false" onAction="#onBtImportFaceGrades" prefHeight="26.0" prefWidth="106.0" text="Face Grades" />
+                  <Button fx:id="btImporPlantBoundaries" layoutX="572.0" layoutY="278.0" mnemonicParsing="false" onAction="#onBtImportPlantBoundaries" prefHeight="26.0" prefWidth="106.0" text="Plant Boundaries" />
+                  <Button fx:id="btImporProgrammedProduction" layoutX="572.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="Production" />
+                  <GridPane fx:id="GRIDP" alignment="CENTER" disable="true" layoutX="799.0" layoutY="157.0" prefHeight="246.0" prefWidth="662.0" style="-fx-alignment: CENTER;" visible="true">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.20001220703125" minWidth="10.0" prefWidth="107.79998779296875" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.20001220703125" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <CheckBox fx:id="CBST8" mnemonicParsing="false" onAction="#onCBST8Action" GridPane.columnIndex="12" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="CBST4" mnemonicParsing="false" onAction="#onCBST4Action" GridPane.columnIndex="12" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="CBEHT1" mnemonicParsing="false" onAction="#onCBEHT1Action" GridPane.columnIndex="10" />
+                        <CheckBox fx:id="CBST2" mnemonicParsing="false" onAction="#onCBST2Action" GridPane.columnIndex="12" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="CBEHT3" mnemonicParsing="false" onAction="#onCBEHT3Action" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="CBST1" mnemonicParsing="false" onAction="#onCBST1Action" GridPane.columnIndex="12" />
+                        <CheckBox fx:id="CBEHT2" mnemonicParsing="false" onAction="#onCBEHT2Action" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="CBEHT4" mnemonicParsing="false" onAction="#onCBEHT4Action" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="CBEHT5" mnemonicParsing="false" onAction="#onCBEHT5Action" GridPane.columnIndex="10" GridPane.rowIndex="4" />
+                        <CheckBox fx:id="CBEHT6" mnemonicParsing="false" onAction="#onCBEHT6Action" GridPane.columnIndex="10" GridPane.rowIndex="5" />
+                        <CheckBox fx:id="CBEHT7" mnemonicParsing="false" onAction="#onCBEHT7Action" GridPane.columnIndex="10" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="CBEHT8" mnemonicParsing="false" onAction="#onCBEHT8Action" GridPane.columnIndex="10" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="CBEHT9" mnemonicParsing="false" onAction="#onCBEHT9Action" GridPane.columnIndex="10" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="CBEHT10" mnemonicParsing="false" onAction="#onCBEHT10Action" GridPane.columnIndex="10" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="CBEHT11" mnemonicParsing="false" onAction="#onCBEHT11Action" GridPane.columnIndex="10" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="CBEHT12" mnemonicParsing="false" onAction="#onCBEHT12Action" GridPane.columnIndex="10" GridPane.rowIndex="11" />
+                        <CheckBox fx:id="CBST3" mnemonicParsing="false" onAction="#onCBST3Action" GridPane.columnIndex="12" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="CBSRT3" mnemonicParsing="false" onAction="#onCBSRT3Action" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="CBSRT1" mnemonicParsing="false" onAction="#onCBSRT1Action" GridPane.columnIndex="11" />
+                        <CheckBox fx:id="CBSRT2" mnemonicParsing="false" onAction="#onCBSRT2Action" GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="CBSRT4" mnemonicParsing="false" onAction="#onCBSRT4Action" GridPane.columnIndex="11" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="CBSRT5" mnemonicParsing="false" onAction="#onCBSRT5Action" GridPane.columnIndex="11" GridPane.rowIndex="4" />
+                        <CheckBox fx:id="CBSRT6" mnemonicParsing="false" onAction="#onCBSRT6Action" GridPane.columnIndex="11" GridPane.rowIndex="5" />
+                        <CheckBox fx:id="CBSRT7" mnemonicParsing="false" onAction="#onCBSRT7Action" GridPane.columnIndex="11" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="CBSRT8" mnemonicParsing="false" onAction="#onCBSRT8Action" GridPane.columnIndex="11" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="CBSRT9" mnemonicParsing="false" onAction="#onCBSRT9Action" GridPane.columnIndex="11" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="CBSRT10" mnemonicParsing="false" onAction="#onCBSRT10Action" GridPane.columnIndex="11" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="CBSRT11" mnemonicParsing="false" onAction="#onCBSRT11Action" GridPane.columnIndex="11" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="CBSRT12" mnemonicParsing="false" onAction="#onCBSRT12Action" GridPane.columnIndex="11" GridPane.rowIndex="11" />
+                        <CheckBox fx:id="CBWRT1" mnemonicParsing="false" onAction="#onCBWRT1Action" GridPane.columnIndex="8" />
+                        <CheckBox fx:id="CBWRT2" mnemonicParsing="false" onAction="#onCBWRT2Action" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="CBWRT3" mnemonicParsing="false" onAction="#onCBWRT3Action" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="CBWRT4" mnemonicParsing="false" onAction="#onCBWRT4Action" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="CBWRT5" mnemonicParsing="false" onAction="#onCBWRT5Action" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                        <CheckBox fx:id="CBWRT6" mnemonicParsing="false" onAction="#onCBWRT6Action" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+                        <CheckBox fx:id="CBWRT7" mnemonicParsing="false" onAction="#onCBWRT7Action" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="CBWRT8" mnemonicParsing="false" onAction="#onCBWRT8Action" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="CBWRT9" mnemonicParsing="false" onAction="#onCBWRT9Action" GridPane.columnIndex="8" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="CBWRT11" mnemonicParsing="false" onAction="#onCBWRT11Action" GridPane.columnIndex="8" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="CBWRT10" mnemonicParsing="false" onAction="#onCBWRT10Action" GridPane.columnIndex="8" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="CBWRT12" mnemonicParsing="false" onAction="#onCBWRT12Action" GridPane.columnIndex="8" GridPane.rowIndex="11" />
+                        <CheckBox fx:id="CBWDT1" mnemonicParsing="false" onAction="#onCBWDT1Action" GridPane.columnIndex="9" />
+                        <CheckBox fx:id="CBWDT2" mnemonicParsing="false" onAction="#onCBWDT2Action" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="CBWDT3" mnemonicParsing="false" onAction="#onCBWDT3Action" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="CBWDT4" mnemonicParsing="false" onAction="#onCBWDT4Action" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="CBWDT5" mnemonicParsing="false" onAction="#onCBWDT5Action" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+                        <CheckBox fx:id="CBWDT6" mnemonicParsing="false" onAction="#onCBWDT6Action" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+                        <CheckBox fx:id="CBWDT7" mnemonicParsing="false" onAction="#onCBWDT7Action" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="CBWDT8" mnemonicParsing="false" onAction="#onCBWDT8Action" GridPane.columnIndex="9" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="CBWDT9" mnemonicParsing="false" onAction="#onCBWDT9Action" GridPane.columnIndex="9" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="CBWDT10" mnemonicParsing="false" onAction="#onCBWDT10Action" GridPane.columnIndex="9" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="CBWDT11" mnemonicParsing="false" onAction="#onCBWDT11Action" GridPane.columnIndex="9" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="CBWDT12" mnemonicParsing="false" onAction="#onCBWDT12Action" GridPane.columnIndex="9" GridPane.rowIndex="11" />
+                        <CheckBox fx:id="CBST5" mnemonicParsing="false" onAction="#onCBST5Action" GridPane.columnIndex="12" GridPane.rowIndex="4" />
+                        <CheckBox fx:id="CBCDT1" mnemonicParsing="false" onAction="#onCBCDT1Action" GridPane.columnIndex="7" />
+                        <CheckBox fx:id="CBCDT2" mnemonicParsing="false" onAction="#onCBCDT2Action" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="CBCDT3" mnemonicParsing="false" onAction="#onCBCDT3Action" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="CBCDT4" mnemonicParsing="false" onAction="#onCBCDT4Action" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="CBCDT5" mnemonicParsing="false" onAction="#onCBCDT5Action" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                        <CheckBox fx:id="CBCDT6" mnemonicParsing="false" onAction="#onCBCDT6Action" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                        <CheckBox fx:id="CBCDT7" mnemonicParsing="false" onAction="#onCBCDT7Action" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="CBCDT8" mnemonicParsing="false" onAction="#onCBCDT8Action" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="CBCDT9" mnemonicParsing="false" onAction="#onCBCDT9Action" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="CBCDT10" mnemonicParsing="false" onAction="#onCBCDT10Action" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="CBCDT11" mnemonicParsing="false" onAction="#onCBCDT11Action" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="CBCDT12" mnemonicParsing="false" onAction="#onCBCDT12Action" GridPane.columnIndex="7" GridPane.rowIndex="11" />
+                        <CheckBox fx:id="CBST6" mnemonicParsing="false" onAction="#onCBST6Action" GridPane.columnIndex="12" GridPane.rowIndex="5" />
+                        <CheckBox fx:id="CBST7" mnemonicParsing="false" onAction="#onCBST7Action" GridPane.columnIndex="12" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="CBST9" mnemonicParsing="false" onAction="#onCBST9Action" GridPane.columnIndex="12" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="CBST10" mnemonicParsing="false" onAction="#onCBST10Action" GridPane.columnIndex="12" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="CBST11" mnemonicParsing="false" onAction="#onCBST11Action" GridPane.columnIndex="12" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="CBST12" mnemonicParsing="false" onAction="#onCBST12Action" GridPane.columnIndex="12" GridPane.rowIndex="11" />
+                        <CheckBox fx:id="CBCRT1" mnemonicParsing="false" onAction="#onCBCRT1Action" GridPane.columnIndex="6" />
+                        <CheckBox fx:id="CBFHT1" mnemonicParsing="false" onAction="#onCBFHT1Action" GridPane.columnIndex="5" />
+                        <CheckBox fx:id="CBCRT2" mnemonicParsing="false" onAction="#onCBCRT2Action" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="CBCRT3" mnemonicParsing="false" onAction="#onCBCRT3Action" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="CBCRT4" mnemonicParsing="false" onAction="#onCBCRT4Action" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="CBCRT5" mnemonicParsing="false" onAction="#onCBCRT5Action" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                        <CheckBox fx:id="CBCRT6" mnemonicParsing="false" onAction="#onCBCRT6Action" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                        <CheckBox fx:id="CBFHT2" mnemonicParsing="false" onAction="#onCBFHT2Action" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="CBFHT3" mnemonicParsing="false" onAction="#onCBFHT3Action" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="CBFHT4" mnemonicParsing="false" onAction="#onCBFHT4Action" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="CBCRT7" mnemonicParsing="false" onAction="#onCBCRT7Action" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="CBFHT5" mnemonicParsing="false" onAction="#onCBFHT5Action" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                        <CheckBox fx:id="CBFHT6" mnemonicParsing="false" onAction="#onCBFHT6Action" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                        <CheckBox fx:id="CBFHT7" mnemonicParsing="false" onAction="#onCBFHT7Action" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="CBCRT8" mnemonicParsing="false" onAction="#onCBCRT8Action" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="CBCRT9" mnemonicParsing="false" onAction="#onCBCRT9Action" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="CBCRT10" mnemonicParsing="false" onAction="#onCBCRT10Action" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="CBCRT11" mnemonicParsing="false" onAction="#onCBCRT11Action" GridPane.columnIndex="6" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="CBCRT12" mnemonicParsing="false" onAction="#onCBCRT12Action" GridPane.columnIndex="6" GridPane.rowIndex="11" />
+                        <CheckBox fx:id="CBFHT8" mnemonicParsing="false" onAction="#onCBFHT8Action" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="CBFHT9" mnemonicParsing="false" onAction="#onCBFHT9Action" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="CBFHT10" mnemonicParsing="false" onAction="#onCBFHT10Action" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="CBFHT11" mnemonicParsing="false" onAction="#onCBFHT11Action" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="CBFHT12" mnemonicParsing="false" onAction="#onCBFHT12Action" GridPane.columnIndex="5" GridPane.rowIndex="11" />
+                        <CheckBox fx:id="CBLT1" mnemonicParsing="false" onAction="#onCBLT1Action" GridPane.columnIndex="4" />
+                        <CheckBox fx:id="CBLT2" mnemonicParsing="false" onAction="#onCBLT2Action" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="CBLT3" mnemonicParsing="false" onAction="#onCBLT3Action" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="CBLT4" mnemonicParsing="false" onAction="#onCBLT4Action" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="CBLT5" mnemonicParsing="false" onAction="#onCBLT5Action" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <CheckBox fx:id="CBLT6" mnemonicParsing="false" onAction="#onCBLT6Action" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                        <CheckBox fx:id="CBLT7" mnemonicParsing="false" onAction="#onCBLT7Action" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="CBLT8" mnemonicParsing="false" onAction="#onCBLT8Action" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="CBLT9" mnemonicParsing="false" onAction="#onCBLT9Action" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="CBLT10" mnemonicParsing="false" onAction="#onCBLT10Action" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="CBLT11" mnemonicParsing="false" onAction="#onCBLT11Action" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="CBLT12" mnemonicParsing="false" onAction="#onCBLT12Action" GridPane.columnIndex="4" GridPane.rowIndex="11" />
+                        <CheckBox fx:id="CBLRT1" mnemonicParsing="false" onAction="#onCBLRT1Action" GridPane.columnIndex="3" />
+                        <CheckBox fx:id="CBLRT2" mnemonicParsing="false" onAction="#onCBLRT2Action" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="CBLRT3" mnemonicParsing="false" onAction="#onCBLRT3Action" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="CBLRT4" mnemonicParsing="false" onAction="#onCBLRT4Action" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="CBLRT5" mnemonicParsing="false" onAction="#onCBLRT5Action" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <CheckBox fx:id="CBLRT6" mnemonicParsing="false" onAction="#onCBLRT6Action" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <CheckBox fx:id="CBLRT7" mnemonicParsing="false" onAction="#onCBLRT7Action" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="CBLRT8" mnemonicParsing="false" onAction="#onCBLRT8Action" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="CBLRT9" mnemonicParsing="false" onAction="#onCBLRT9Action" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="CBLRT10" mnemonicParsing="false" onAction="#onCBLRT10Action" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="CBLRT11" mnemonicParsing="false" onAction="#onCBLRT11Action" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="CBLRT12" mnemonicParsing="false" onAction="#onCBLRT12Action" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+                        <CheckBox fx:id="CBOPT1" mnemonicParsing="false" onAction="#onCBOPT1Action" />
+                        <CheckBox fx:id="CBOPT2" mnemonicParsing="false" onAction="#onCBOPT2Action" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="CBOPT3" mnemonicParsing="false" onAction="#onCBOPT3Action" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="CBOPT4" mnemonicParsing="false" onAction="#onCBOPT4Action" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="CBOPT5" mnemonicParsing="false" onAction="#onCBOPT5Action" GridPane.rowIndex="4" />
+                        <CheckBox fx:id="CBOPT6" mnemonicParsing="false" onAction="#onCBOPT6Action" GridPane.rowIndex="5" />
+                        <CheckBox fx:id="CBOPT7" mnemonicParsing="false" onAction="#onCBOPT7Action" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="CBOPT8" mnemonicParsing="false" onAction="#onCBOPT8Action" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="CBOPT9" mnemonicParsing="false" onAction="#onCBOPT9Action" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="CBOPT10" mnemonicParsing="false" onAction="#onCBOPT10Action" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="CBOPT11" mnemonicParsing="false" onAction="#onCBOPT11Action" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="CBOPT12" mnemonicParsing="false" onAction="#onCBOPT12Action" GridPane.rowIndex="11" />
+                        <ComboBox fx:id="InitialFaceT1" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="InitialFaceT2" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="InitialFaceT3" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="InitialFaceT4" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="InitialFaceT5" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <ComboBox fx:id="InitialFaceT6" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <ComboBox fx:id="InitialFaceT7" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <ComboBox fx:id="InitialFaceT8" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <ComboBox fx:id="InitialFaceT9" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <ComboBox fx:id="InitialFaceT10" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <ComboBox fx:id="InitialFaceT11" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <ComboBox fx:id="InitialFaceT12" minHeight="-Infinity" prefHeight="21.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                     </children>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </GridPane>
+                  <Label layoutX="752.0" layoutY="156.0" text="T1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="752.0" layoutY="178.0" text="T2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="752.0" layoutY="199.0" text="T3">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="752.0" layoutY="220.0" text="T4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="752.0" layoutY="242.0" text="T5">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="752.0" layoutY="263.0" text="T6">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="752.0" layoutY="284.0" text="T7">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="752.0" layoutY="305.0" text="T8">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="752.0" layoutY="327.0" text="T9">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="752.0" layoutY="349.0" text="T10">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="752.0" layoutY="391.0" text="T12">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="752.0" layoutY="370.0" text="T11">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="989.0" layoutY="122.0" rotate="-65.0" text="Loading">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="1034.0" layoutY="111.0" rotate="-65.0" text="Full Haulage">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="1086.0" layoutY="110.0" rotate="-65.0" text="Crusher Row">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="923.0" layoutY="99.0" prefHeight="18.0" prefWidth="94.0" rotate="-65.0" text="Loading Row">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="1139.0" layoutY="109.0" rotate="-65.0" text="Crusher ">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="1143.0" layoutY="116.0" rotate="-65.0" text="Discharge">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="1181.0" layoutY="108.0" rotate="-65.0" text="Waste Rock ">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="1192.0" layoutY="114.0" rotate="-65.0" text="Dump Row">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="1290.0" layoutY="103.0" rotate="-65.0" text="Empty Haulage">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1240.0" layoutY="94.0" rotate="-65.0" text="Waste Rock ">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1236.0" layoutY="100.0" rotate="-65.0" text="Dump Discharge">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Line endX="620.0" layoutX="838.0" layoutY="450.0" startX="-100.0" />
+                  <Label layoutX="738.0" layoutY="9.0" text="Mining Managment - Initial Location">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1347.0" layoutY="112.0" rotate="-65.0" text="Supply Row">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1407.0" layoutY="125.0" rotate="-65.0" text="Supply">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="778.0" layoutY="100.0" prefHeight="18.0" prefWidth="94.0" rotate="-65.0" text="Inoperative">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btStart" layoutX="744.0" layoutY="482.0" mnemonicParsing="false" onAction="#onBtStart" text="Start" />
+                  <Label layoutX="867.0" layoutY="128.0" prefHeight="18.0" prefWidth="29.0" text="Face">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <GridPane layoutX="751.0" layoutY="582.0" prefHeight="170.0" prefWidth="186.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="48.00003662109375" minWidth="10.0" prefWidth="20.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.5999755859375" minWidth="10.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.5999755859375" minWidth="3.5999755859375" prefWidth="50.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                     	<TextField fx:id="PlanProdO1" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="1" />
+                        <TextField fx:id="PlanProdO2" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="PlanProdO3" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="PlanProdO4" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="PlanProdO5" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="PlanProdW1" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="PlanProdW2" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label text="O1" />
+                        <Label text="O2" GridPane.rowIndex="1" />
+                        <Label text="O3" GridPane.rowIndex="2" />
+                        <Label text="O4" GridPane.rowIndex="3" />
+                        <Label text="O5" GridPane.rowIndex="4" />
+                        <Label text="W1" GridPane.rowIndex="5" />
+                        <Label text="W2" GridPane.rowIndex="6" />
+                        <TextField fx:id="DevProdO1" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="3" />
+                        <TextField fx:id="DevProdO2" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <TextField fx:id="DevProdO3" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <TextField fx:id="DevProdO4" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <TextField fx:id="DevProdO5" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <TextField fx:id="DevProdW1" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <TextField fx:id="DevProdW2" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                        <TextField fx:id="ActualProdO1" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="2" />
+                        <TextField fx:id="ActualProdO2" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="ActualProdO3" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="ActualProdO4" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <TextField fx:id="ActualProdO5" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <TextField fx:id="ActualProdW1" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <TextField fx:id="ActualProdW2" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                     </children>
+                  </GridPane>
+                  <Label layoutX="778.0" layoutY="533.0" rotate="-65.0" text="Planned">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1146.0" layoutY="508.0" text="Select the truck for dispatch: " />
+                  <TextArea fx:id="txtAreaDispatch" layoutX="1142.0" layoutY="555.0" prefHeight="200.0" prefWidth="200.0" />
+                  <Label layoutX="773.0" layoutY="531.0" rotate="-65.0" text="Production  (t)">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="826.0" layoutY="531.0" rotate="-65.0" text="Production  (t)">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="833.0" layoutY="534.0" rotate="-65.0" text="Actual">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="874.0" layoutY="533.0" rotate="-65.0" text="Deviation (%)">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="738.0" layoutY="459.0" text="Mining Managment - Decision Making">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="12.0" layoutY="10.0" text="Mining Managment - Data">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btAllocate" disable="true" layoutX="744.0" layoutY="32.0" mnemonicParsing="false" onAction="#onBtAllocateAction" text="Allocate" />
+                  <CheckBox fx:id="CBDone" disable="true" layoutX="813.0" layoutY="36.0" mnemonicParsing="false" />
+                  <Button fx:id="EbtEdit" layoutX="1423.0" layoutY="33.0" mnemonicParsing="false" onAction="#onBtEditAction" text="Edit" />
+                  <Label layoutX="861.0" layoutY="116.0" prefHeight="18.0" prefWidth="43.0" text="Origin">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btDispatch" layoutX="1377.0" layoutY="527.0" mnemonicParsing="false" onAction="#onBtDispatchAction" text="Dispatch" />
+                  <ComboBox fx:id="CBDispatch" layoutX="1141.0" layoutY="527.0" prefHeight="26.0" prefWidth="199.0" />
 					</children>
 				</AnchorPane>
 			</children>
 		</VBox>
 	</content>
+   <padding>
+      <Insets bottom="10.0" />
+   </padding>
 </ScrollPane>

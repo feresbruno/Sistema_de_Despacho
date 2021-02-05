@@ -24,10 +24,9 @@
 				<Button mnemonicParsing="false" text="New" />
 				<Button mnemonicParsing="false" text="Open" />
 				<Button mnemonicParsing="false" text="Save" />
-				<Button mnemonicParsing="false" text="Back" />
 			</items>
 		</ToolBar>
-		<TableView prefHeight="50.0" prefWidth="600.0">
+		<TableView editable="true" prefHeight="50.0" prefWidth="600.0">
 			<columnResizePolicy>
 				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 			</columnResizePolicy>
