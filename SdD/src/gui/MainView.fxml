@@ -8,10 +8,10 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,26 +22,31 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="943.0" prefWidth="1484.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+<ScrollPane prefHeight="847.0" prefWidth="1484.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
 	<content>
-		<VBox prefHeight="904.0" prefWidth="1470.0">
+		<VBox prefHeight="922.0" prefWidth="1470.0">
 			<children>
 				<MenuBar prefHeight="26.0" prefWidth="705.0">
 					<menus>
 						<Menu mnemonicParsing="false" text="File">
 							<items>
-								<MenuItem mnemonicParsing="false" text="Exit" />
+                        <MenuItem fx:id="menuItemReinit" disable="true" mnemonicParsing="false" onAction="#onMenuItemReinitAction" text="Reinit" />
+								<MenuItem fx:id="menuItemExit" mnemonicParsing="false" onAction="#onMenuItemExitAction" text="Exit" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="false" text="Import Data">
 							<items>
-								<MenuItem fx:id="menuItemImportFaceProduction" mnemonicParsing="false" onAction="#onMenuItemImportFaceProductionAction" text="Cycle Time" />
 								<MenuItem fx:id="menuItemImportFaceGrades" mnemonicParsing="false" onAction="#onMenuItemImportFaceGradesAction" text="Face Grades" />
+                        <MenuItem fx:id="menuImportPlantBoundaries" mnemonicParsing="false" onAction="#onMenuImportPlantBoundariesAction" text="Plant Boundaries" />
+								<MenuItem fx:id="menuItemImportTrucksCapacity" mnemonicParsing="false" onAction="#onMenuItemImportTrucksCapacityAction" text="Truck Capacities" />
 								<MenuItem fx:id="menuItemImportMinePlan" mnemonicParsing="false" onAction="#onMenuItemImportMinePlanAction" text="Mine Plan" />
-                        <MenuItem mnemonicParsing="false" text="Plant Boundaries" />
-								<MenuItem fx:id="menuItemImportTrucksCapacity" mnemonicParsing="false" onAction="#onMenuItemImportTrucksCapacityAction" text="Truck's Capacity" />
 							</items>
 						</Menu>
+                  <Menu mnemonicParsing="false" text="Export">
+                    <items>
+                        <MenuItem fx:id="menuItemExportShiftReport" disable="true" mnemonicParsing="false" onAction="#onMenuItemExportShiftReportAction" text="Shift Report" />
+                    </items>
+                  </Menu>
 						<Menu mnemonicParsing="false" text="Help">
 							<items>
 								<MenuItem fx:id="menuItemAbout" mnemonicParsing="false" onAction="#onMenuItemAboutAction" text="About" />
@@ -49,9 +54,9 @@
 						</Menu>
 					</menus>
 				</MenuBar>
-				<AnchorPane layoutX="6.0" pickOnBounds="false" prefHeight="865.0" prefWidth="1470.0">
+				<AnchorPane layoutX="6.0" pickOnBounds="false" prefHeight="912.0" prefWidth="1470.0">
 					<children>
-						<TableView fx:id="tableViewMinePlans" layoutX="14.0" layoutY="55.0" prefHeight="170.0" prefWidth="520.0">
+						<TableView fx:id="tableViewMinePlans" layoutX="21.0" layoutY="452.0" prefHeight="170.0" prefWidth="520.0">
 							<columnResizePolicy>
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
@@ -71,7 +76,7 @@
 								<TableColumn fx:id="tableColumnT12" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T12" />
 							</columns>
 						</TableView>
-						<TableView fx:id="tableViewFaceGrades" layoutX="22.0" layoutY="563.0" prefHeight="170.0" prefWidth="684.0">
+						<TableView fx:id="tableViewFaceGrades" layoutX="21.0" layoutY="52.0" prefHeight="170.0" prefWidth="684.0">
 							<columnResizePolicy>
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
@@ -88,17 +93,17 @@
 								<TableColumn fx:id="tableColumnG0_15mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+0,15mm" />
 							</columns>
 						</TableView>
-						<Label layoutX="33.0" layoutY="545.0" text="Face Grades (%)">
+						<Label layoutX="32.0" layoutY="35.0" text="Face Grades (%)">
 							<font>
 								<Font name="System Bold" size="12.0" />
 							</font>
 						</Label>
-						<Label layoutX="24.0" layoutY="37.0" text="Mine Plan">
+						<Label layoutX="31.0" layoutY="434.0" text="Mine Plan">
 							<font>
 								<Font name="System Bold" size="12.0" />
 							</font>
 						</Label>
-						<TableView fx:id="tableViewTrucksCapacity" layoutX="54.0" layoutY="262.0" prefHeight="51.0" prefWidth="480.0">
+						<TableView fx:id="tableViewTrucksCapacity" layoutX="61.0" layoutY="366.0" prefHeight="51.0" prefWidth="480.0">
 							<columnResizePolicy>
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
@@ -117,38 +122,13 @@
 								<TableColumn fx:id="tableColumnt12" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T12" />
 							</columns>
 						</TableView>
-						<Label layoutX="63.0" layoutY="245.0" text="Truck Capacities (t)">
+						<Label layoutX="71.0" layoutY="348.0" text="Truck Capacities (t)">
 							<font>
 								<Font name="System Bold" size="12.0" />
 							</font>
 						</Label>
-						<Button fx:id="btImporMinePlan" layoutX="572.0" layoutY="93.0" mnemonicParsing="false" onAction="#onBtImportMinePlan" prefHeight="26.0" prefWidth="106.0" text="Mine Plan" />
-						<TableView fx:id="tableViewCycleTime" layoutX="22.0" layoutY="355.0" prefHeight="170.0" prefWidth="520.0">
-							<columnResizePolicy>
-								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-							</columnResizePolicy>
-							<columns>
-								<TableColumn fx:id="tableColumnFaceCT" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Face" />
-								<TableColumn fx:id="tableColumnCT1" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T1" />
-								<TableColumn fx:id="tableColumnCT2" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T2" />
-								<TableColumn fx:id="tableColumnCT3" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T3" />
-								<TableColumn fx:id="tableColumnCT4" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T4" />
-								<TableColumn fx:id="tableColumnCT5" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T5" />
-								<TableColumn fx:id="tableColumnCT6" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T6" />
-								<TableColumn fx:id="tableColumnCT7" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T7" />
-								<TableColumn fx:id="tableColumnCT8" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T8" />
-								<TableColumn fx:id="tableColumnCT9" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T9" />
-								<TableColumn fx:id="tableColumnCT10" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T10" />
-								<TableColumn fx:id="tableColumnCT11" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T11" />
-								<TableColumn fx:id="tableColumnCT12" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T12" />
-							</columns>
-						</TableView>
-						<Label layoutX="32.0" layoutY="337.0" text="Cycle Time (min)">
-							<font>
-								<Font name="System Bold" size="12.0" />
-							</font>
-						</Label>
-						<TableView fx:id="tableViewPlantBoundaries" layoutX="23.0" layoutY="771.0" prefHeight="74.0" prefWidth="682.0">
+						<Button fx:id="btImporMinePlan" layoutX="586.0" layoutY="425.0" mnemonicParsing="false" onAction="#onBtImportMinePlan" prefHeight="26.0" prefWidth="106.0" text="Mine Plan" />
+						<TableView fx:id="tableViewPlantBoundaries" layoutX="21.0" layoutY="257.0" prefHeight="74.0" prefWidth="684.0">
 							<columnResizePolicy>
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
@@ -165,18 +145,16 @@
 								<TableColumn fx:id="tableColumnB0_15mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+0,15mm" />
 							</columns>
 						</TableView>
-                  <Label layoutX="32.0" layoutY="753.0" text="Plant Boundaries (%)">
+                  <Label layoutX="31.0" layoutY="239.0" text="Plant Boundaries (%)">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Line endY="735.0" layoutX="727.0" layoutY="113.0" startY="-100.39999389648438" />
-                  <Button fx:id="btImporTrucksCapacity" layoutX="572.0" layoutY="130.0" mnemonicParsing="false" onAction="#onbtImporTrucksCapacity" prefWidth="106.0" text="Truck's Capacity" />
-                  <Label layoutX="548.0" layoutY="63.0" prefHeight="18.0" prefWidth="110.0" text="Click to import the:" />
-                  <Button fx:id="btImporCycleTime" layoutX="572.0" layoutY="167.0" mnemonicParsing="false" onAction="#onBtImportCycleTime" prefHeight="26.0" prefWidth="106.0" text="Cycle Time" />
-                  <Button fx:id="btImporFaceGrades" layoutX="572.0" layoutY="241.0" mnemonicParsing="false" onAction="#onBtImportFaceGrades" prefHeight="26.0" prefWidth="106.0" text="Face Grades" />
-                  <Button fx:id="btImporPlantBoundaries" layoutX="572.0" layoutY="278.0" mnemonicParsing="false" onAction="#onBtImportPlantBoundaries" prefHeight="26.0" prefWidth="106.0" text="Plant Boundaries" />
-                  <Button fx:id="btImporProgrammedProduction" layoutX="572.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="Production" />
+                  <Line endY="800.0" layoutX="727.0" layoutY="113.0" startY="-100.39999389648438" />
+                  <Button fx:id="btImporTrucksCapacity" layoutX="586.0" layoutY="462.0" mnemonicParsing="false" onAction="#onbtImporTrucksCapacity" prefWidth="106.0" text="Truck's Capacity" />
+                  <Label layoutX="562.0" layoutY="395.0" prefHeight="18.0" prefWidth="110.0" text="Click to import the:" />
+                  <Button fx:id="btImporFaceGrades" layoutX="586.0" layoutY="498.0" mnemonicParsing="false" onAction="#onBtImportFaceGrades" prefHeight="26.0" prefWidth="106.0" text="Face Grades" />
+                  <Button fx:id="btImporPlantBoundaries" layoutX="586.0" layoutY="535.0" mnemonicParsing="false" onAction="#onBtImportPlantBoundaries" prefHeight="26.0" prefWidth="106.0" text="Plant Boundaries" />
                   <GridPane fx:id="GRIDP" alignment="CENTER" disable="true" layoutX="799.0" layoutY="157.0" prefHeight="246.0" prefWidth="662.0" style="-fx-alignment: CENTER;" visible="true">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -413,11 +391,11 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <Label layoutX="1086.0" layoutY="110.0" rotate="-65.0" text="Crusher Row">
+                  <Label layoutX="1083.0" layoutY="104.0" rotate="-65.0" text="Crusher Queue">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <Label layoutX="923.0" layoutY="99.0" prefHeight="18.0" prefWidth="94.0" rotate="-65.0" text="Loading Row">
+                  <Label layoutX="923.0" layoutY="99.0" prefHeight="18.0" prefWidth="94.0" rotate="-65.0" text="Loading Queue">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
@@ -429,11 +407,11 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <Label layoutX="1181.0" layoutY="108.0" rotate="-65.0" text="Waste Rock ">
+                  <Label layoutX="1184.0" layoutY="99.0" rotate="-65.0" text="Waste Rock ">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <Label layoutX="1192.0" layoutY="114.0" rotate="-65.0" text="Dump Row">
+                  <Label layoutX="1191.0" layoutY="106.0" rotate="-65.0" text="Dump Queue">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
@@ -458,7 +436,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="1347.0" layoutY="112.0" rotate="-65.0" text="Supply Row">
+                  <Label layoutX="1345.0" layoutY="104.0" rotate="-65.0" text="Supply Queue">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -473,13 +451,12 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btStart" layoutX="744.0" layoutY="482.0" mnemonicParsing="false" onAction="#onBtStart" text="Start" />
                   <Label layoutX="867.0" layoutY="128.0" prefHeight="18.0" prefWidth="29.0" text="Face">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <GridPane layoutX="751.0" layoutY="582.0" prefHeight="170.0" prefWidth="186.0">
+                  <GridPane layoutX="764.0" layoutY="570.0" prefHeight="170.0" prefWidth="186.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="48.00003662109375" minWidth="10.0" prefWidth="20.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="50.0" />
@@ -526,29 +503,28 @@
                         <TextField fx:id="ActualProdW2" editable="false" style="-fx-alignment: CENTER;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
-                  <Label layoutX="778.0" layoutY="533.0" rotate="-65.0" text="Planned">
+                  <Label layoutX="791.0" layoutY="521.0" rotate="-65.0" text="Planned">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="1146.0" layoutY="508.0" text="Select the truck for dispatch: " />
-                  <TextArea fx:id="txtAreaDispatch" layoutX="1142.0" layoutY="555.0" prefHeight="200.0" prefWidth="200.0" />
-                  <Label layoutX="773.0" layoutY="531.0" rotate="-65.0" text="Production  (t)">
+                  <Label layoutX="1136.0" layoutY="564.0" text="Select the truck for dispatch: " />
+                  <Label layoutX="786.0" layoutY="519.0" rotate="-65.0" text="Production  (t)">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="826.0" layoutY="531.0" rotate="-65.0" text="Production  (t)">
+                  <Label layoutX="839.0" layoutY="519.0" rotate="-65.0" text="Production  (t)">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="833.0" layoutY="534.0" rotate="-65.0" text="Actual">
+                  <Label layoutX="846.0" layoutY="522.0" rotate="-65.0" text="Actual">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="874.0" layoutY="533.0" rotate="-65.0" text="Deviation (%)">
+                  <Label layoutX="887.0" layoutY="521.0" rotate="-65.0" text="Deviation (%)">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -565,14 +541,114 @@
                   </Label>
                   <Button fx:id="btAllocate" disable="true" layoutX="744.0" layoutY="32.0" mnemonicParsing="false" onAction="#onBtAllocateAction" text="Allocate" />
                   <CheckBox fx:id="CBDone" disable="true" layoutX="813.0" layoutY="36.0" mnemonicParsing="false" />
-                  <Button fx:id="EbtEdit" layoutX="1423.0" layoutY="33.0" mnemonicParsing="false" onAction="#onBtEditAction" text="Edit" />
                   <Label layoutX="861.0" layoutY="116.0" prefHeight="18.0" prefWidth="43.0" text="Origin">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btDispatch" layoutX="1377.0" layoutY="527.0" mnemonicParsing="false" onAction="#onBtDispatchAction" text="Dispatch" />
-                  <ComboBox fx:id="CBDispatch" layoutX="1141.0" layoutY="527.0" prefHeight="26.0" prefWidth="199.0" />
+                  <Button fx:id="btDispatch" disable="true" layoutX="1371.0" layoutY="582.0" mnemonicParsing="false" onAction="#onBtDispatchAction" text="Dispatch" />
+                  <ComboBox fx:id="CBDispatch" disable="true" layoutX="1135.0" layoutY="582.0" prefHeight="26.0" prefWidth="199.0" />
+                  <Line endX="600.0" layoutX="111.0" layoutY="635.0" startX="-100.0" />
+                  <TableView fx:id="tableViewActual" layoutX="21.0" layoutY="676.0" prefHeight="200.0" prefWidth="670.0">
+                    <columnResizePolicy>
+								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+							</columnResizePolicy>
+							<columns>
+								<TableColumn fx:id="tableColumnFaceAc" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Face" />
+								<TableColumn fx:id="tableColumnAcT1" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T1" />
+								<TableColumn fx:id="tableColumnAcT2" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T2" />
+								<TableColumn fx:id="tableColumnAcT3" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T3" />
+								<TableColumn fx:id="tableColumnAcT4" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T4" />
+								<TableColumn fx:id="tableColumnAcT5" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T5" />
+								<TableColumn fx:id="tableColumnAcT6" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T6" />
+								<TableColumn fx:id="tableColumnAcT7" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T7" />
+								<TableColumn fx:id="tableColumnAcT8" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T8" />
+								<TableColumn fx:id="tableColumnAcT9" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T9" />
+								<TableColumn fx:id="tableColumnAcT10" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T10" />
+								<TableColumn fx:id="tableColumnAcT11" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T11" />
+								<TableColumn fx:id="tableColumnAcT12" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T12" />
+							</columns>
+                  </TableView>
+                  <TextField fx:id="Time" editable="false" layoutX="1285.0" layoutY="485.0" />
+                  <TableView fx:id="tableViewProdGrade" layoutX="753.0" layoutY="779.0" prefHeight="56.0" prefWidth="691.0">
+                    <columnResizePolicy>
+								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+							</columnResizePolicy>
+							<columns>
+								<TableColumn fx:id="tableColumnPG1" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Fe" />
+								<TableColumn fx:id="tableColumnPG2" prefWidth="50.0" style="-fx-alignment: CENTER;" text="SiO2" />
+								<TableColumn fx:id="tableColumnPG3" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Al2O3" />
+								<TableColumn fx:id="tableColumnPG4" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Mn" />
+								<TableColumn fx:id="tableColumnPG5" prefWidth="50.0" style="-fx-alignment: CENTER;" text="P" />
+								<TableColumn fx:id="tableColumnPG6" prefWidth="50.0" style="-fx-alignment: CENTER;" text="LOI" />
+								<TableColumn fx:id="tableColumnPG7" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+50,00mm" />
+								<TableColumn fx:id="tableColumnPG8" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+6,30mm" />
+								<TableColumn fx:id="tableColumnPG9" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+0,15mm" />
+							</columns>
+                  </TableView>
+                  <Label layoutX="766.0" layoutY="762.0" text="Production Grade">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1341.0" layoutY="466.0" text="Clock">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="16.0" layoutY="646.0" text="Mining Managment - Realized Mining Plan">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="CBAl2O3" disable="true" layoutX="937.0" layoutY="847.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CB50" disable="true" layoutX="1244.0" layoutY="847.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBFe" disable="true" layoutX="783.0" layoutY="847.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBMn" disable="true" layoutX="1014.0" layoutY="847.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBSiO2" disable="true" layoutX="860.0" layoutY="847.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBLOI" disable="true" layoutX="1167.0" layoutY="847.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CB015" disable="true" layoutX="1398.0" layoutY="847.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBP" disable="true" layoutX="1091.0" layoutY="847.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CB63" disable="true" layoutX="1321.0" layoutY="847.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBO1" disable="true" layoutX="962.0" layoutY="574.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBO2" disable="true" layoutX="962.0" layoutY="598.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBO3" disable="true" layoutX="962.0" layoutY="622.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBO4" disable="true" layoutX="962.0" layoutY="646.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBO5" disable="true" layoutX="962.0" layoutY="670.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBW1" disable="true" layoutX="962.0" layoutY="694.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="CBW2" disable="true" layoutX="962.0" layoutY="718.0" mnemonicParsing="false" />
+                  <TextField fx:id="txtAreaDispatch" editable="false" layoutX="1136.0" layoutY="610.0" prefHeight="26.0" prefWidth="199.0" style="-fx-alignment: CENTER;" />
+                  <Button fx:id="btFinish" layoutX="1375.0" layoutY="887.0" mnemonicParsing="false" onAction="#onBtFinish" text="Finish" />
+                  <TextField fx:id="ProdTot" editable="false" layoutX="1135.0" layoutY="717.0" prefHeight="26.0" prefWidth="54.4" style="-fx-alignment: CENTER;" />
+                  <TextField fx:id="ProdOre" editable="false" layoutX="1191.0" layoutY="717.0" prefHeight="26.0" prefWidth="54.4" style="-fx-alignment: CENTER;" />
+                  <TextField fx:id="ProdWaste" editable="false" layoutX="1247.0" layoutY="717.0" prefHeight="26.0" prefWidth="54.4" style="-fx-alignment: CENTER;" />
+                  <TextField fx:id="REM" editable="false" layoutX="1302.0" layoutY="717.0" prefHeight="26.0" prefWidth="54.4" style="-fx-alignment: CENTER;" />
+                  <Label layoutX="1256.0" layoutY="690.0" rotate="-65.0" text="Waste">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1145.0" layoutY="690.0" rotate="-65.0" text="Total ">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1031.0" layoutY="694.0" text="Productions (t):">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1187.0" layoutY="669.0" prefHeight="16.0" prefWidth="78.0" rotate="-65.0" text="Ore ">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1298.0" layoutY="669.0" prefHeight="0.0" prefWidth="78.0" rotate="-65.0" text="REM">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="PB" layoutX="1136.0" layoutY="638.0" prefWidth="200.0" progress="0.0" />
 					</children>
 				</AnchorPane>
 			</children>
