@@ -14,13 +14,13 @@ public class Main extends Application {
 	
 	Stage window;
 	
-
 	private static Scene mainScene;
 
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws InterruptedException {
 		try {
 			//new Splash();
+						
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainView.fxml"));
 			ScrollPane scrollPane = loader.load();
 			
@@ -36,6 +36,7 @@ public class Main extends Application {
 			Image ico = new Image("/gui/util/Images/truck.png");
 			primaryStage.getIcons().add(ico);
 			primaryStage.show();
+			
 			window = primaryStage;
 		} catch (IOException e) {
 			e.printStackTrace();

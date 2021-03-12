@@ -106,7 +106,4 @@ public class PlantBoundaries {
 	public void setMore0_15mm(double more0_15mm) {
 		this.more0_15mm = more0_15mm;
 	}
-	
-	
-	
 }

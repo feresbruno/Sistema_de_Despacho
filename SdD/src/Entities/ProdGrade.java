@@ -96,7 +96,4 @@ public class ProdGrade {
 	public void setMore0_15mm(String more0_15mm) {
 		this.more0_15mm = more0_15mm;
 	}
-	
-	
-	
 }

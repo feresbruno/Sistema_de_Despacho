@@ -27,5 +27,4 @@ public class AboutViewController implements Initializable {
         img1.setImage(image1);
         img2.setImage(image);
     }
-
 }

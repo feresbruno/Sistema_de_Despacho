@@ -9,24 +9,32 @@ import javax.swing.JWindow;
 import javax.swing.SwingConstants;
 
 public class Splash {
-	
+
 	private final int LARGURA_IMG = 500;
 	private final int ALTURA_IMG = 310;
-	private final int TEMPO_DE_SPLASH = 6000;
+	private final int TEMPO_DE_SPLASH = 5000;
 	private final String CAMINHO_GIF = "/gui/util/Images/oie_JfdexWMWTeYF.gif";
 
 	public Splash() {
 		JWindow janelaSplash = new JWindow();
-		janelaSplash.getContentPane().add(new JLabel("",new ImageIcon(getClass().getResource(CAMINHO_GIF)),SwingConstants.CENTER));
+		janelaSplash.getContentPane()
+				.add(new JLabel("", new ImageIcon(getClass().getResource(CAMINHO_GIF)), SwingConstants.CENTER));
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension dimension = toolkit.getScreenSize();
-		
-		janelaSplash.setBounds((dimension.width-LARGURA_IMG)/2,(dimension.height-ALTURA_IMG)/2,LARGURA_IMG,ALTURA_IMG);;
+
+		janelaSplash.setBounds((dimension.width - LARGURA_IMG) / 2, (dimension.height - ALTURA_IMG) / 2, LARGURA_IMG,
+				ALTURA_IMG);
+		;
 		janelaSplash.setVisible(true);
-		
+
 		try {
 			Thread.sleep(TEMPO_DE_SPLASH);
-		}catch(InterruptedException e){}
+		} catch (InterruptedException e) {
+		    e.printStackTrace();
+		}
+		
+		janelaSplash.setVisible(false);
 		janelaSplash.dispose();
-	}	
+		
+	}
 }

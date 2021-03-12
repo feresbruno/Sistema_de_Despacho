@@ -30,6 +30,13 @@ public class TruckCapacity {
 		this.capT11 = capT11;
 		this.capT12 = capT12;
 	}
+	
+	
+
+	public TruckCapacity() {
+	}
+
+
 
 	public int getCapT1() {
 		return capT1;
@@ -126,7 +133,4 @@ public class TruckCapacity {
 	public void setCapT12(int capT12) {
 		this.capT12 = capT12;
 	}
-
-	
-
 }
