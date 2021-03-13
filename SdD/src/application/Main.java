@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import gui.util.Splash;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,7 +20,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws InterruptedException {
 		try {
-			//new Splash();
+			new Splash();
 						
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainView.fxml"));
 			ScrollPane scrollPane = loader.load();

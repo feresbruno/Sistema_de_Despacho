@@ -3090,7 +3090,7 @@ public class MainViewController implements Initializable {
 		}
 	    
 	    arq.close();
-	  
+	    Alerts.showAlert("Saved", "Shift report saved successfully!", AlertType.INFORMATION);
 }
 	
 
