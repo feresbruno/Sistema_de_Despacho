@@ -189,59 +189,59 @@ public class MainViewController implements Initializable {
 	List<PlantBoundaries> listPB = new ArrayList<>();
 
 	List<FaceGrades> listFG = new ArrayList<>();
-	
+
 	List<FaceGrades> listFG1 = new ArrayList<>();
 
 	Double[] UB = new Double[9];
-	
+
 	Double[] LB = new Double[9];
-	
+
 	String[] Faces = new String[7];
-	
+
 	Double[] ProdGrade = new Double[9];
-	
+
 	Double[][] MatG = new Double[5][9];
-	
+
 	Integer[][] MatP = new Integer[7][12];
-	
+
 	Integer[][] MatA = new Integer[7][12];
-	
+
 	Double[] VectPlan = new Double[7];
-	
+
 	Double[] VectProd = new Double[7];
-	
+
 	Double[] VectDev = new Double[7];
-	
+
 	Double[] VectDevX = new Double[7];
-	
+
 	Double[] VectCapT = new Double[12];
-	
+
 	Integer[] VectFT = new Integer[7];
-	
-	//Report
-	
+
+	// Report
+
 	List<MinePlan> listRepPlan = new ArrayList<>();
-	
+
 	List<MinePlan> listRepActual = new ArrayList<>();
-	
+
 	Long RepDate = null;
-	
+
 	List<Travels> listRepTravels = new ArrayList<>();
-	
+
 	Double[] VectRepProdPerFace = new Double[7];
-	
+
 	Double RepProdOre = null;
-	
+
 	Double RepProdWaste = null;
-	
+
 	Double RepProdTotal = null;
-	
+
 	Double RepREM = null;
-	
+
 	List<ProdGrade> listRepProdGrade = new ArrayList<>();
-	
+
 	Integer[] VectRepTravelsPerTruck = new Integer[12];
-	
+
 	@FXML
 	public void onMenuItemImportMinePlanAction() throws IOException {
 		FileChooser fileChooser = new FileChooser();
@@ -689,29 +689,126 @@ public class MainViewController implements Initializable {
 				listOperativeTruck.add("12");
 
 			}
-
-			ObservableList<String> obsCombo;
-			List<String> initialFaces = new ArrayList<>();
+			
+			ObservableList<String> obsComboT1;
+			List<String> initialFaceT1 = new ArrayList<>();
 			for (MinePlan m : listMinePlan) {
-				if (m.getT1() + m.getT2() + m.getT3() + m.getT4() + m.getT5() + m.getT6() + m.getT7() + m.getT8()
-						+ m.getT9() + m.getT10() + m.getT11() + m.getT12() != 0) {
-					initialFaces.add(m.getFace());
+				if(m.getT1() != 0) {
+					initialFaceT1.add(m.getFace());
 				}
 			}
-
-			obsCombo = FXCollections.observableArrayList(initialFaces);
-			InitialFaceT1.setItems(obsCombo);
-			InitialFaceT2.setItems(obsCombo);
-			InitialFaceT3.setItems(obsCombo);
-			InitialFaceT4.setItems(obsCombo);
-			InitialFaceT5.setItems(obsCombo);
-			InitialFaceT6.setItems(obsCombo);
-			InitialFaceT7.setItems(obsCombo);
-			InitialFaceT8.setItems(obsCombo);
-			InitialFaceT9.setItems(obsCombo);
-			InitialFaceT10.setItems(obsCombo);
-			InitialFaceT11.setItems(obsCombo);
-			InitialFaceT12.setItems(obsCombo);
+			obsComboT1 = FXCollections.observableArrayList(initialFaceT1);
+			InitialFaceT1.setItems(obsComboT1);
+			
+			ObservableList<String> obsComboT2;
+			List<String> initialFaceT2 = new ArrayList<>();
+			for (MinePlan m : listMinePlan) {
+				if(m.getT2() != 0) {
+					initialFaceT2.add(m.getFace());
+				}
+			}
+			obsComboT2 = FXCollections.observableArrayList(initialFaceT2);
+			InitialFaceT2.setItems(obsComboT2);
+			
+			ObservableList<String> obsComboT3;
+			List<String> initialFaceT3 = new ArrayList<>();
+			for (MinePlan m : listMinePlan) {
+				if(m.getT3() != 0) {
+					initialFaceT3.add(m.getFace());
+				}
+			}
+			obsComboT3 = FXCollections.observableArrayList(initialFaceT3);
+			InitialFaceT3.setItems(obsComboT3);
+			
+			ObservableList<String> obsComboT4;
+			List<String> initialFaceT4 = new ArrayList<>();
+			for (MinePlan m : listMinePlan) {
+				if(m.getT4() != 0) {
+					initialFaceT4.add(m.getFace());
+				}
+			}
+			obsComboT4 = FXCollections.observableArrayList(initialFaceT4);
+			InitialFaceT4.setItems(obsComboT4);
+			
+			ObservableList<String> obsComboT5;
+			List<String> initialFaceT5 = new ArrayList<>();
+			for (MinePlan m : listMinePlan) {
+				if(m.getT5() != 0) {
+					initialFaceT5.add(m.getFace());
+				}
+			}
+			obsComboT5 = FXCollections.observableArrayList(initialFaceT5);
+			InitialFaceT5.setItems(obsComboT5);
+			
+			ObservableList<String> obsComboT6;
+			List<String> initialFaceT6 = new ArrayList<>();
+			for (MinePlan m : listMinePlan) {
+				if(m.getT6() != 0) {
+					initialFaceT6.add(m.getFace());
+				}
+			}
+			obsComboT6 = FXCollections.observableArrayList(initialFaceT6);
+			InitialFaceT6.setItems(obsComboT6);
+			
+			ObservableList<String> obsComboT7;
+			List<String> initialFaceT7 = new ArrayList<>();
+			for (MinePlan m : listMinePlan) {
+				if(m.getT7() != 0) {
+					initialFaceT7.add(m.getFace());
+				}
+			}
+			obsComboT7 = FXCollections.observableArrayList(initialFaceT7);
+			InitialFaceT7.setItems(obsComboT7);
+			
+			ObservableList<String> obsComboT8;
+			List<String> initialFaceT8 = new ArrayList<>();
+			for (MinePlan m : listMinePlan) {
+				if(m.getT8() != 0) {
+					initialFaceT8.add(m.getFace());
+				}
+			}
+			obsComboT8 = FXCollections.observableArrayList(initialFaceT8);
+			InitialFaceT8.setItems(obsComboT8);
+			
+			ObservableList<String> obsComboT9;
+			List<String> initialFaceT9 = new ArrayList<>();
+			for (MinePlan m : listMinePlan) {
+				if(m.getT9() != 0) {
+					initialFaceT9.add(m.getFace());
+				}
+			}
+			obsComboT9 = FXCollections.observableArrayList(initialFaceT9);
+			InitialFaceT9.setItems(obsComboT9);
+			
+			ObservableList<String> obsComboT10;
+			List<String> initialFaceT10 = new ArrayList<>();
+			for (MinePlan m : listMinePlan) {
+				if(m.getT10() != 0) {
+					initialFaceT10.add(m.getFace());
+				}
+			}
+			obsComboT10 = FXCollections.observableArrayList(initialFaceT10);
+			InitialFaceT10.setItems(obsComboT10);
+			
+			ObservableList<String> obsComboT11;
+			List<String> initialFaceT11 = new ArrayList<>();
+			for (MinePlan m : listMinePlan) {
+				if(m.getT11() != 0) {
+					initialFaceT11.add(m.getFace());
+				}
+			}
+			obsComboT11 = FXCollections.observableArrayList(initialFaceT11);
+			InitialFaceT11.setItems(obsComboT11);
+			
+			ObservableList<String> obsComboT12;
+			List<String> initialFaceT12 = new ArrayList<>();
+			for (MinePlan m : listMinePlan) {
+				if(m.getT12() != 0) {
+					initialFaceT12.add(m.getFace());
+				}
+			}
+			obsComboT12 = FXCollections.observableArrayList(initialFaceT12);
+			InitialFaceT12.setItems(obsComboT12);
 
 			GRIDP.setDisable(false);
 			btAllocate.setDisable(false);
@@ -1019,7 +1116,7 @@ public class MainViewController implements Initializable {
 		DecimalFormat df1 = new DecimalFormat("#0.00");
 		DecimalFormat df2 = new DecimalFormat("#0.000");
 		DecimalFormat df3 = new DecimalFormat("#0.0");
-		
+
 		listRepPlan = listMinePlan;
 
 		txtAreaDispatch.clear();
@@ -1057,7 +1154,7 @@ public class MainViewController implements Initializable {
 				}
 				menor = (VectProd[index] + VectCapT[numberT - 1]) / VectPlan[index];
 			}
-			
+
 			VectProd[index] = VectProd[index] + VectCapT[numberT - 1];
 			VectDev[index] = (menor - 1) * -100;
 
@@ -1084,7 +1181,7 @@ public class MainViewController implements Initializable {
 
 			obsListActual = FXCollections.observableArrayList(listActual);
 			tableViewActual.setItems(obsListActual);
-			
+
 			VectRepTravelsPerTruck[0] = 0;
 			VectRepTravelsPerTruck[1] = 0;
 			VectRepTravelsPerTruck[2] = 0;
@@ -1097,7 +1194,7 @@ public class MainViewController implements Initializable {
 			VectRepTravelsPerTruck[9] = 0;
 			VectRepTravelsPerTruck[10] = 0;
 			VectRepTravelsPerTruck[11] = 0;
-			
+
 			for (int i = 0; i < 7; i++) {
 				VectRepTravelsPerTruck[0] += MatA[i][0];
 				VectRepTravelsPerTruck[1] += MatA[i][1];
@@ -1112,9 +1209,9 @@ public class MainViewController implements Initializable {
 				VectRepTravelsPerTruck[10] += MatA[i][10];
 				VectRepTravelsPerTruck[11] += MatA[i][11];
 			}
-			
+
 			listRepActual = listActual;
-			
+
 			double somaFe = 0;
 			double somaSiO2 = 0;
 			double somaAl2O3 = 0;
@@ -1156,7 +1253,7 @@ public class MainViewController implements Initializable {
 							df1.format(ProdGrade[6]), df1.format(ProdGrade[7]), df1.format(ProdGrade[8])));
 			obsProdGrade = FXCollections.observableArrayList(listProdGrade);
 			tableViewProdGrade.setItems(obsProdGrade);
-			
+
 			listRepProdGrade = listProdGrade;
 
 			if (ProdGrade[0] > UB[0] | ProdGrade[0] < LB[0]) {
@@ -1282,7 +1379,7 @@ public class MainViewController implements Initializable {
 			} else {
 				CBO1.setStyle("-fx-body-color: GAINSBORO; -fx-mark-color: GAINSBORO");
 			}
-			
+
 			if (PlanProdO2.isDisable() == false) {
 				if (VectProd[1] >= VectPlan[1]) {
 					CBO2.setSelected(true);
@@ -1378,7 +1475,7 @@ public class MainViewController implements Initializable {
 			} else {
 				CBW2.setStyle("-fx-body-color: GAINSBORO; -fx-mark-color: GAINSBORO");
 			}
-			
+
 			if (ActualProdO1.isDisable() == false) {
 				if (VectProd[0] == 0.0) {
 					ActualProdO1.setText("0,0");
@@ -1698,7 +1795,7 @@ public class MainViewController implements Initializable {
 			} else {
 				REM.setText(String.valueOf(df3.format(rem)));
 			}
-			
+
 			VectRepProdPerFace[0] = VectProd[0];
 			VectRepProdPerFace[1] = VectProd[1];
 			VectRepProdPerFace[2] = VectProd[2];
@@ -1706,25 +1803,27 @@ public class MainViewController implements Initializable {
 			VectRepProdPerFace[4] = VectProd[4];
 			VectRepProdPerFace[5] = VectProd[5];
 			VectRepProdPerFace[6] = VectProd[6];
-						
+
 			RepProdOre = prodOre;
-			
+
 			RepProdWaste = prodWaste;
-			
+
 			RepProdTotal = prodTot;
-			
+
 			RepREM = rem;
-			
+
 			CBDispatch.getSelectionModel().clearSelection();
-			
+
 			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 			RepDate = System.currentTimeMillis();
 			String dataFormatada = dateFormat.format(RepDate);
-			
+
 			listRepTravels.add(new Travels(numberT, dataFormatada, destiny));
-			
-			//Report report = new Report(listRepPlan, listRepActual, dataFormatada, listRepTravels,	VectRepProdPerFace, RepProdOre, RepProdWaste, RepProdTotal, RepREM, listRepProdGrade, VectRepTravelsPerTruck); 
-			//System.out.println(report);
+
+			// Report report = new Report(listRepPlan, listRepActual, dataFormatada,
+			// listRepTravels, VectRepProdPerFace, RepProdOre, RepProdWaste, RepProdTotal,
+			// RepREM, listRepProdGrade, VectRepTravelsPerTruck);
+			// System.out.println(report);
 
 		} catch (RuntimeException e) {
 			Alerts.showAlert("Error", "Select a truck to dispatch", AlertType.ERROR);
@@ -2712,7 +2811,7 @@ public class MainViewController implements Initializable {
 
 			btDispatch.setDisable(false);
 			btFinish.setDisable(false);
-			
+
 			txtAreaDispatch.setDisable(false);
 			CBDispatch.setDisable(false);
 
@@ -3036,63 +3135,69 @@ public class MainViewController implements Initializable {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		RepDate = System.currentTimeMillis();
 		String dataFormatada = dateFormat.format(RepDate);
-		
 
 		SimpleDateFormat dateFormat1 = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
 		String dataFormatada1 = dateFormat1.format(date);
-		
+
 		DecimalFormat formato = new DecimalFormat("#,##");
-		
+
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open File Dialog");
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("text file", "*.txt", "txt"));
-		
+
 		File file = fileChooser.showSaveDialog(null);
 
-	    FileWriter arq = new FileWriter(file);
-	    PrintWriter gravarArq = new PrintWriter(arq);
+		FileWriter arq = new FileWriter(file);
+		PrintWriter gravarArq = new PrintWriter(arq);
 
-	    gravarArq.printf("Shift report - " + dataFormatada + " - " + dataFormatada1 + "\n");
-	    gravarArq.printf("------------------------------------\n");
-	    gravarArq.printf("\n");
-	    gravarArq.printf("Mine Plan\n");
-	    for (MinePlan c : listRepPlan) {
-	    	gravarArq.printf("[face=" + c.getFace() + ", T1=" + c.getT1() + ", T2=" + c.getT2() + ", T3=" + c.getT3() + ", T4=" + c.getT4() + ", T5=" + c.getT5() + ", T6=" + c.getT6() + ", T7=" + c.getT7() + ", T8=" + c.getT8() + ", T9=" + c.getT9() + ", T10=" + c.getT10() + ", T11=" + c.getT11() + ", T12=" + c.getT12() +"]\n" );
+		gravarArq.printf("Shift report - " + dataFormatada + " - " + dataFormatada1 + "\n");
+		gravarArq.printf("------------------------------------\n");
+		gravarArq.printf("\n");
+		gravarArq.printf("Mine Plan\n");
+		for (MinePlan c : listRepPlan) {
+			gravarArq.printf("[face=" + c.getFace() + ", T1=" + c.getT1() + ", T2=" + c.getT2() + ", T3=" + c.getT3()
+					+ ", T4=" + c.getT4() + ", T5=" + c.getT5() + ", T6=" + c.getT6() + ", T7=" + c.getT7() + ", T8="
+					+ c.getT8() + ", T9=" + c.getT9() + ", T10=" + c.getT10() + ", T11=" + c.getT11() + ", T12="
+					+ c.getT12() + "]\n");
 		}
-	    gravarArq.printf("\n");
-	    gravarArq.printf("Realized Mine Plan\n");
-	    for (MinePlan c : listRepActual) {
-	    	gravarArq.printf("[face=" + c.getFace() + ", T1=" + c.getT1() + ", T2=" + c.getT2() + ", T3=" + c.getT3() + ", T4=" + c.getT4() + ", T5=" + c.getT5() + ", T6=" + c.getT6() + ", T7=" + c.getT7() + ", T8=" + c.getT8() + ", T9=" + c.getT9() + ", T10=" + c.getT10() + ", T11=" + c.getT11() + ", T12=" + c.getT12() +"]\n" );
+		gravarArq.printf("\n");
+		gravarArq.printf("Realized Mine Plan\n");
+		for (MinePlan c : listRepActual) {
+			gravarArq.printf("[face=" + c.getFace() + ", T1=" + c.getT1() + ", T2=" + c.getT2() + ", T3=" + c.getT3()
+					+ ", T4=" + c.getT4() + ", T5=" + c.getT5() + ", T6=" + c.getT6() + ", T7=" + c.getT7() + ", T8="
+					+ c.getT8() + ", T9=" + c.getT9() + ", T10=" + c.getT10() + ", T11=" + c.getT11() + ", T12="
+					+ c.getT12() + "]\n");
 		}
-	    gravarArq.printf("\n");
-	    gravarArq.printf("Truck Trips\n[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]\n");
-	    gravarArq.printf(Arrays.toString(VectRepTravelsPerTruck));
-	    gravarArq.printf("\n");
-	    gravarArq.printf("\n");	    
-	    gravarArq.printf("Travel List\n");
-	    for (Travels c : listRepTravels) {
+		gravarArq.printf("\n");
+		gravarArq.printf("Truck Trips\n[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12]\n");
+		gravarArq.printf(Arrays.toString(VectRepTravelsPerTruck));
+		gravarArq.printf("\n");
+		gravarArq.printf("\n");
+		gravarArq.printf("Travel List\n");
+		for (Travels c : listRepTravels) {
 			gravarArq.printf("T" + c.getTruck() + " -> " + c.getFace() + " at " + c.getDate() + "\n");
 		}
-	    gravarArq.printf("\n");
-	    gravarArq.printf("Faces Productions \n[O1, O2, O3, O4, O5, W1, W2]\n");
-	    gravarArq.printf(Arrays.toString(VectRepProdPerFace));
-	    gravarArq.printf("\n");
-	    gravarArq.printf("\n");	 
-	    gravarArq.printf("Ore Production=" + RepProdOre + "\n");
-	    gravarArq.printf("Waste Production=" + RepProdWaste + "\n");
-	    gravarArq.printf("Total Production=" + RepProdTotal + "\n");
-	    gravarArq.printf("REM=" + Double.valueOf(formato.format(RepREM)) + "\n");
-	    gravarArq.printf("\n");
-	    gravarArq.printf("Mixture Grade (in percentage)\n");
-	    for (ProdGrade c : listRepProdGrade) {
-	    	gravarArq.printf("[Fe=" + c.getFe() + "; SiO2=" + c.getSio2() + "; Al2O3=" + c.getAl2o3() + "; Mn=" + c.getMn() + "; P=" + c.getP() + "; LOI=" + c.getLoi() + "; +50,00mm=" + c.getMore50mm() + "; +6,30mm=" + c.getMore6_3mm() + "; +0,15mm=" + c.getMore0_15mm() + "]");
+		gravarArq.printf("\n");
+		gravarArq.printf("Faces Productions \n[O1, O2, O3, O4, O5, W1, W2]\n");
+		gravarArq.printf(Arrays.toString(VectRepProdPerFace));
+		gravarArq.printf("\n");
+		gravarArq.printf("\n");
+		gravarArq.printf("Ore Production=" + RepProdOre + "\n");
+		gravarArq.printf("Waste Production=" + RepProdWaste + "\n");
+		gravarArq.printf("Total Production=" + RepProdTotal + "\n");
+		gravarArq.printf("REM=" + Double.valueOf(formato.format(RepREM)) + "\n");
+		gravarArq.printf("\n");
+		gravarArq.printf("Mixture Grade (in percentage)\n");
+		for (ProdGrade c : listRepProdGrade) {
+			gravarArq.printf("[Fe=" + c.getFe() + "; SiO2=" + c.getSio2() + "; Al2O3=" + c.getAl2o3() + "; Mn="
+					+ c.getMn() + "; P=" + c.getP() + "; LOI=" + c.getLoi() + "; +50,00mm=" + c.getMore50mm()
+					+ "; +6,30mm=" + c.getMore6_3mm() + "; +0,15mm=" + c.getMore0_15mm() + "]");
 		}
-	    
-	    arq.close();
-	    Alerts.showAlert("Saved", "Shift report saved successfully!", AlertType.INFORMATION);
-}
-	
+
+		arq.close();
+		Alerts.showAlert("Saved", "Shift report saved successfully!", AlertType.INFORMATION);
+	}
 
 	@FXML
 	public void onMenuItemExitAction() {
