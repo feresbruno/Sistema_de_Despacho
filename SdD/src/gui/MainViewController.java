@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -15,7 +16,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -23,7 +23,6 @@ import Entities.FaceGrades;
 import Entities.MinePlan;
 import Entities.PlantBoundaries;
 import Entities.ProdGrade;
-import Entities.Report;
 import Entities.Travels;
 import Entities.TruckCapacity;
 import gui.util.Alerts;
@@ -236,7 +235,7 @@ public class MainViewController implements Initializable {
 
 	Double RepProdTotal = null;
 
-	Double RepREM = null;
+	String RepREM = null;
 
 	List<ProdGrade> listRepProdGrade = new ArrayList<>();
 
@@ -1112,10 +1111,10 @@ public class MainViewController implements Initializable {
 	@FXML
 	void onBtDispatchAction(ActionEvent event) {
 
-		DecimalFormat df = new DecimalFormat("###.0");
+		DecimalFormat df = new DecimalFormat("###");
 		DecimalFormat df1 = new DecimalFormat("#0.00");
 		DecimalFormat df2 = new DecimalFormat("#0.000");
-		DecimalFormat df3 = new DecimalFormat("#0.0");
+		DecimalFormat df3 = new DecimalFormat("#0.00");
 
 		listRepPlan = listMinePlan;
 
@@ -1478,49 +1477,49 @@ public class MainViewController implements Initializable {
 
 			if (ActualProdO1.isDisable() == false) {
 				if (VectProd[0] == 0.0) {
-					ActualProdO1.setText("0,0");
+					ActualProdO1.setText("0");
 				} else {
 					ActualProdO1.setText(String.valueOf(df.format(VectProd[0])));
 				}
 			}
 			if (ActualProdO2.isDisable() == false) {
 				if (VectProd[1] == 0.0) {
-					ActualProdO2.setText("0,0");
+					ActualProdO2.setText("0");
 				} else {
 					ActualProdO2.setText(String.valueOf(df.format(VectProd[1])));
 				}
 			}
 			if (ActualProdO3.isDisable() == false) {
 				if (VectProd[2] == 0.0) {
-					ActualProdO3.setText("0,0");
+					ActualProdO3.setText("0");
 				} else {
 					ActualProdO3.setText(String.valueOf(df.format(VectProd[2])));
 				}
 			}
 			if (ActualProdO4.isDisable() == false) {
 				if (VectProd[3] == 0.0) {
-					ActualProdO4.setText("0,0");
+					ActualProdO4.setText("0");
 				} else {
 					ActualProdO4.setText(String.valueOf(df.format(VectProd[3])));
 				}
 			}
 			if (ActualProdO5.isDisable() == false) {
 				if (VectProd[4] == 0.0) {
-					ActualProdO5.setText("0,0");
+					ActualProdO5.setText("0");
 				} else {
 					ActualProdO5.setText(String.valueOf(df.format(VectProd[4])));
 				}
 			}
 			if (ActualProdW1.isDisable() == false) {
 				if (VectProd[5] == 0.0) {
-					ActualProdW1.setText("0,0");
+					ActualProdW1.setText("0");
 				} else {
 					ActualProdW1.setText(String.valueOf(df.format(VectProd[5])));
 				}
 			}
 			if (ActualProdW2.isDisable() == false) {
 				if (VectProd[6] == 0.0) {
-					ActualProdW2.setText("0,0");
+					ActualProdW2.setText("0");
 				} else {
 					ActualProdW2.setText(String.valueOf(df.format(VectProd[6])));
 				}
@@ -1528,49 +1527,49 @@ public class MainViewController implements Initializable {
 
 			if (DevProdO1.isDisable() == false) {
 				if (VectDev[0] == 0.0) {
-					DevProdO1.setText("0.0");
+					DevProdO1.setText("0");
 				} else {
 					DevProdO1.setText(String.valueOf(df.format(VectDev[0])));
 				}
 			}
 			if (DevProdO2.isDisable() == false) {
 				if (VectDev[1] == 0.0) {
-					DevProdO2.setText("0.0");
+					DevProdO2.setText("0");
 				} else {
 					DevProdO2.setText(String.valueOf(df.format(VectDev[1])));
 				}
 			}
 			if (DevProdO3.isDisable() == false) {
 				if (VectDev[2] == 0.0) {
-					DevProdO3.setText("0.0");
+					DevProdO3.setText("0");
 				} else {
 					DevProdO3.setText(String.valueOf(df.format(VectDev[2])));
 				}
 			}
 			if (DevProdO4.isDisable() == false) {
 				if (VectDev[3] == 0.0) {
-					DevProdO4.setText("0.0");
+					DevProdO4.setText("0");
 				} else {
 					DevProdO4.setText(String.valueOf(df.format(VectDev[3])));
 				}
 			}
 			if (DevProdO5.isDisable() == false) {
 				if (VectDev[4] == 0.0) {
-					DevProdO5.setText("0.0");
+					DevProdO5.setText("0");
 				} else {
 					DevProdO5.setText(String.valueOf(df.format(VectDev[4])));
 				}
 			}
 			if (DevProdW1.isDisable() == false) {
 				if (VectDev[5] == 0.0) {
-					DevProdW1.setText("0.0");
+					DevProdW1.setText("0");
 				} else {
 					DevProdW1.setText(String.valueOf(df.format(VectDev[5])));
 				}
 			}
 			if (DevProdW2.isDisable() == false) {
 				if (VectDev[6] == 0.0) {
-					DevProdW2.setText("0.0");
+					DevProdW2.setText("0");
 				} else {
 					DevProdW2.setText(String.valueOf(df.format(VectDev[6])));
 				}
@@ -1773,25 +1772,25 @@ public class MainViewController implements Initializable {
 			rem = prodWaste / prodOre;
 
 			if (prodTot == 0.0) {
-				ProdTot.setText("0,0");
+				ProdTot.setText("0");
 			} else {
 				ProdTot.setText(String.valueOf(df.format(prodTot)));
 			}
 
 			if (prodOre == 0.0) {
-				ProdOre.setText("0,0");
+				ProdOre.setText("0");
 			} else {
 				ProdOre.setText(String.valueOf(df.format(prodOre)));
 			}
 
 			if (prodWaste == 0.0) {
-				ProdWaste.setText("0,0");
+				ProdWaste.setText("0");
 			} else {
 				ProdWaste.setText(String.valueOf(df.format(prodWaste)));
 			}
 
 			if (rem == 0.0) {
-				REM.setText("0,0");
+				REM.setText("0,00");
 			} else {
 				REM.setText(String.valueOf(df3.format(rem)));
 			}
@@ -1810,7 +1809,7 @@ public class MainViewController implements Initializable {
 
 			RepProdTotal = prodTot;
 
-			RepREM = rem;
+			RepREM = String.valueOf(df3.format(rem));
 
 			CBDispatch.getSelectionModel().clearSelection();
 
@@ -2038,10 +2037,10 @@ public class MainViewController implements Initializable {
 				p += 1;
 			}
 
-			DecimalFormat df = new DecimalFormat("#,###.0");
+			DecimalFormat df = new DecimalFormat("#,###");
 			DecimalFormat df1 = new DecimalFormat("#,00.00");
 			DecimalFormat df2 = new DecimalFormat("#,0.000");
-			DecimalFormat df3 = new DecimalFormat("#,0.0");
+			DecimalFormat df3 = new DecimalFormat("#,0.00");
 
 			if (PlanProdO1.isDisable() == false) {
 				PlanProdO1.setText(String.valueOf(df.format(list.get(0))));
@@ -2396,49 +2395,49 @@ public class MainViewController implements Initializable {
 
 			if (ActualProdO1.isDisable() == false) {
 				if (ip1 == 0.0) {
-					ActualProdO1.setText("0,0");
+					ActualProdO1.setText("0");
 				} else {
 					ActualProdO1.setText(String.valueOf(df.format(ip1)));
 				}
 			}
 			if (ActualProdO2.isDisable() == false) {
 				if (ip2 == 0.0) {
-					ActualProdO2.setText("0,0");
+					ActualProdO2.setText("0");
 				} else {
 					ActualProdO2.setText(String.valueOf(df.format(ip2)));
 				}
 			}
 			if (ActualProdO3.isDisable() == false) {
 				if (ip3 == 0.0) {
-					ActualProdO3.setText("0,0");
+					ActualProdO3.setText("0");
 				} else {
 					ActualProdO3.setText(String.valueOf(df.format(ip3)));
 				}
 			}
 			if (ActualProdO4.isDisable() == false) {
 				if (ip4 == 0.0) {
-					ActualProdO4.setText("0,0");
+					ActualProdO4.setText("0");
 				} else {
 					ActualProdO4.setText(String.valueOf(df.format(ip4)));
 				}
 			}
 			if (ActualProdO5.isDisable() == false) {
 				if (ip5 == 0.0) {
-					ActualProdO5.setText("0,0");
+					ActualProdO5.setText("0");
 				} else {
 					ActualProdO5.setText(String.valueOf(df.format(ip5)));
 				}
 			}
 			if (ActualProdW1.isDisable() == false) {
 				if (ip6 == 0.0) {
-					ActualProdW1.setText("0,0");
+					ActualProdW1.setText("0");
 				} else {
 					ActualProdW1.setText(String.valueOf(df.format(ip6)));
 				}
 			}
 			if (ActualProdW2.isDisable() == false) {
 				if (ip7 == 0.0) {
-					ActualProdW2.setText("0,0");
+					ActualProdW2.setText("0");
 				} else {
 					ActualProdW2.setText(String.valueOf(df.format(ip7)));
 				}
@@ -2463,25 +2462,25 @@ public class MainViewController implements Initializable {
 			rem = prodWaste / prodOre;
 
 			if (prodTot == 0.0) {
-				ProdTot.setText("0,0");
+				ProdTot.setText("0");
 			} else {
 				ProdTot.setText(String.valueOf(df.format(prodTot)));
 			}
 
 			if (prodOre == 0.0) {
-				ProdOre.setText("0,0");
+				ProdOre.setText("0");
 			} else {
 				ProdOre.setText(String.valueOf(df.format(prodOre)));
 			}
 
 			if (prodWaste == 0.0) {
-				ProdWaste.setText("0,0");
+				ProdWaste.setText("0");
 			} else {
 				ProdWaste.setText(String.valueOf(df.format(prodWaste)));
 			}
 
 			if (rem == 0.0) {
-				REM.setText("0,0");
+				REM.setText("0,00");
 			} else {
 				REM.setText(String.valueOf(df3.format(rem)));
 			}
@@ -2749,49 +2748,49 @@ public class MainViewController implements Initializable {
 			// Deviation
 			if (DevProdO1.isDisable() == false) {
 				if (ip1 / list.get(0) == 1) {
-					DevProdO1.setText("0,0");
+					DevProdO1.setText("0");
 				} else {
 					DevProdO1.setText(String.valueOf(df.format(((ip1 / list.get(0)) - 1) * -100)));
 				}
 			}
 			if (DevProdO2.isDisable() == false) {
 				if (ip2 / list.get(1) == 1) {
-					DevProdO2.setText("0,0");
+					DevProdO2.setText("0");
 				} else {
 					DevProdO2.setText(String.valueOf(df.format(((ip2 / list.get(1)) - 1) * -100)));
 				}
 			}
 			if (DevProdO3.isDisable() == false) {
 				if (ip3 / list.get(2) == 1) {
-					DevProdO3.setText("0,0");
+					DevProdO3.setText("0");
 				} else {
 					DevProdO3.setText(String.valueOf(df.format(((ip3 / list.get(2)) - 1) * -100)));
 				}
 			}
 			if (DevProdO4.isDisable() == false) {
 				if (ip4 / list.get(3) == 1) {
-					DevProdO4.setText("0,0");
+					DevProdO4.setText("0");
 				} else {
 					DevProdO4.setText(String.valueOf(df.format(((ip4 / list.get(3)) - 1) * -100)));
 				}
 			}
 			if (DevProdO5.isDisable() == false) {
 				if (ip5 / list.get(4) == 1) {
-					DevProdO5.setText("0,0");
+					DevProdO5.setText("0");
 				} else {
 					DevProdO5.setText(String.valueOf(df.format(((ip5 / list.get(4)) - 1) * -100)));
 				}
 			}
 			if (DevProdW1.isDisable() == false) {
 				if (ip6 / list.get(5) == 1) {
-					DevProdW1.setText("0,0");
+					DevProdW1.setText("0");
 				} else {
 					DevProdW1.setText(String.valueOf(df.format(((ip6 / list.get(5)) - 1) * -100)));
 				}
 			}
 			if (DevProdW2.isDisable() == false) {
 				if (ip7 / list.get(6) == 1) {
-					DevProdW2.setText("0,0");
+					DevProdW2.setText("0");
 				} else {
 					DevProdW2.setText(String.valueOf(df.format(((ip7 / list.get(6)) - 1) * -100)));
 				}
@@ -3140,7 +3139,6 @@ public class MainViewController implements Initializable {
 		Date date = new Date();
 		String dataFormatada1 = dateFormat1.format(date);
 
-		DecimalFormat formato = new DecimalFormat("#,##");
 
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open File Dialog");
@@ -3156,15 +3154,15 @@ public class MainViewController implements Initializable {
 		gravarArq.printf("\n");
 		gravarArq.printf("Mine Plan\n");
 		for (MinePlan c : listRepPlan) {
-			gravarArq.printf("[face=" + c.getFace() + ", T1=" + c.getT1() + ", T2=" + c.getT2() + ", T3=" + c.getT3()
+			gravarArq.printf("[Bench=" + c.getFace() + ", T1=" + c.getT1() + ", T2=" + c.getT2() + ", T3=" + c.getT3()
 					+ ", T4=" + c.getT4() + ", T5=" + c.getT5() + ", T6=" + c.getT6() + ", T7=" + c.getT7() + ", T8="
 					+ c.getT8() + ", T9=" + c.getT9() + ", T10=" + c.getT10() + ", T11=" + c.getT11() + ", T12="
 					+ c.getT12() + "]\n");
 		}
 		gravarArq.printf("\n");
-		gravarArq.printf("Realized Mine Plan\n");
+		gravarArq.printf("Executed Mine Plan\n");
 		for (MinePlan c : listRepActual) {
-			gravarArq.printf("[face=" + c.getFace() + ", T1=" + c.getT1() + ", T2=" + c.getT2() + ", T3=" + c.getT3()
+			gravarArq.printf("[Bench=" + c.getFace() + ", T1=" + c.getT1() + ", T2=" + c.getT2() + ", T3=" + c.getT3()
 					+ ", T4=" + c.getT4() + ", T5=" + c.getT5() + ", T6=" + c.getT6() + ", T7=" + c.getT7() + ", T8="
 					+ c.getT8() + ", T9=" + c.getT9() + ", T10=" + c.getT10() + ", T11=" + c.getT11() + ", T12="
 					+ c.getT12() + "]\n");
@@ -3179,16 +3177,16 @@ public class MainViewController implements Initializable {
 			gravarArq.printf("T" + c.getTruck() + " -> " + c.getFace() + " at " + c.getDate() + "\n");
 		}
 		gravarArq.printf("\n");
-		gravarArq.printf("Faces Productions \n[O1, O2, O3, O4, O5, W1, W2]\n");
+		gravarArq.printf("Benches Productions \n[O1, O2, O3, O4, O5, W1, W2]\n");
 		gravarArq.printf(Arrays.toString(VectRepProdPerFace));
 		gravarArq.printf("\n");
 		gravarArq.printf("\n");
 		gravarArq.printf("Ore Production=" + RepProdOre + "\n");
-		gravarArq.printf("Waste Production=" + RepProdWaste + "\n");
-		gravarArq.printf("Total Production=" + RepProdTotal + "\n");
-		gravarArq.printf("REM=" + Double.valueOf(formato.format(RepREM)) + "\n");
+		gravarArq.printf("Waste Movement=" + RepProdWaste + "\n");
+		gravarArq.printf("Total=" + RepProdTotal + "\n");
+		gravarArq.printf("Stripping Ratio=" + RepREM + "\n");
 		gravarArq.printf("\n");
-		gravarArq.printf("Mixture Grade (in percentage)\n");
+		gravarArq.printf("Current Grade (in percentage)\n");
 		for (ProdGrade c : listRepProdGrade) {
 			gravarArq.printf("[Fe=" + c.getFe() + "; SiO2=" + c.getSio2() + "; Al2O3=" + c.getAl2o3() + "; Mn="
 					+ c.getMn() + "; P=" + c.getP() + "; LOI=" + c.getLoi() + "; +50,00mm=" + c.getMore50mm()

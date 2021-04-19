@@ -20,8 +20,8 @@ public class AboutViewController implements Initializable {
 	@Override
     public void initialize(URL uri, ResourceBundle rb) {
 		
-		File file = new File("E:\\UFOP\\TCC\\School of mines.png");
-		File file1 = new File("E:\\UFOP\\TCC\\UFOP.png");
+		File file = new File("E:\\UFOP\\8º Período\\Trabalho de Conclusão de Curso\\TCC\\School of mines.png");
+		File file1 = new File("E:\\UFOP\\8º Período\\Trabalho de Conclusão de Curso\\TCC\\UFOP.png");
         Image image = new Image(file.toURI().toString());
         Image image1 = new Image(file1.toURI().toString());
         img1.setImage(image1);

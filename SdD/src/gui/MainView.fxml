@@ -21,7 +21,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="752.0" prefWidth="1369.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+<ScrollPane prefHeight="723.0" prefWidth="1508.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
 	<content>
 		<VBox prefHeight="950.0" prefWidth="1514.0">
 			<children>
@@ -35,7 +35,7 @@
 						</Menu>
 						<Menu mnemonicParsing="false" text="Import Data">
 							<items>
-								<MenuItem fx:id="menuItemImportFaceGrades" mnemonicParsing="false" onAction="#onMenuItemImportFaceGradesAction" text="Face Grades" />
+								<MenuItem fx:id="menuItemImportFaceGrades" mnemonicParsing="false" onAction="#onMenuItemImportFaceGradesAction" text="Bench Grades" />
                         <MenuItem fx:id="menuImportPlantBoundaries" mnemonicParsing="false" onAction="#onMenuImportPlantBoundariesAction" text="Plant Boundaries" />
 								<MenuItem fx:id="menuItemImportTrucksCapacity" mnemonicParsing="false" onAction="#onMenuItemImportTrucksCapacityAction" text="Truck Capacities" />
 								<MenuItem fx:id="menuItemImportMinePlan" mnemonicParsing="false" onAction="#onMenuItemImportMinePlanAction" text="Mine Plan" />
@@ -60,7 +60,7 @@
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
 							<columns>
-								<TableColumn fx:id="tableColumnFace" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Face" />
+								<TableColumn fx:id="tableColumnFace" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Bench" />
 								<TableColumn fx:id="tableColumnT1" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T1" />
 								<TableColumn fx:id="tableColumnT2" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T2" />
 								<TableColumn fx:id="tableColumnT3" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T3" />
@@ -80,24 +80,24 @@
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
 							<columns>
-								<TableColumn fx:id="tableColumnFaceG" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Face" />
-								<TableColumn fx:id="tableColumnGFe" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Fe" />
-								<TableColumn fx:id="tableColumnGSiO2" prefWidth="50.0" style="-fx-alignment: CENTER;" text="SiO2" />
-								<TableColumn fx:id="tableColumnGAl2O3" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Al2O3" />
-								<TableColumn fx:id="tableColumnGMn" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Mn" />
-								<TableColumn fx:id="tableColumnGP" prefWidth="50.0" style="-fx-alignment: CENTER;" text="P" />
-								<TableColumn fx:id="tableColumnGLOI" prefWidth="50.0" style="-fx-alignment: CENTER;" text="LOI" />
-								<TableColumn fx:id="tableColumnG50mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+50,00mm" />
-								<TableColumn fx:id="tableColumnG6_3mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+6,30mm" />
-								<TableColumn fx:id="tableColumnG0_15mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+0,15mm" />
+								<TableColumn fx:id="tableColumnFaceG" minWidth="5.0" prefWidth="45.0" style="-fx-alignment: CENTER;" text="Bench" />
+								<TableColumn fx:id="tableColumnGFe" minWidth="5.0" prefWidth="45.0" style="-fx-alignment: CENTER;" text="Fe" />
+								<TableColumn fx:id="tableColumnGSiO2" minWidth="5.0" prefWidth="50.0" style="-fx-alignment: CENTER;" text="SiO2" />
+								<TableColumn fx:id="tableColumnGAl2O3" minWidth="5.0" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Al2O3" />
+								<TableColumn fx:id="tableColumnGMn" minWidth="5.0" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Mn" />
+								<TableColumn fx:id="tableColumnGP" minWidth="5.0" prefWidth="50.0" style="-fx-alignment: CENTER;" text="P" />
+								<TableColumn fx:id="tableColumnGLOI" minWidth="5.0" prefWidth="50.0" style="-fx-alignment: CENTER;" text="LOI" />
+								<TableColumn fx:id="tableColumnG50mm" minWidth="5.0" prefWidth="60.79998779296875" style="-fx-alignment: CENTER;" text="+6,30mm" />
+								<TableColumn fx:id="tableColumnG6_3mm" minWidth="5.0" prefWidth="103.20001220703125" style="-fx-alignment: CENTER;" text="+0,15mm" />
+								<TableColumn fx:id="tableColumnG0_15mm" minWidth="5.0" prefWidth="73.60003662109375" style="-fx-alignment: CENTER;" text="-0,15mm" />
 							</columns>
 						</TableView>
-						<Label layoutX="38.0" layoutY="35.0" text="Face Grades (%)">
+						<Label layoutX="38.0" layoutY="35.0" text="Bench Grades (%)">
 							<font>
 								<Font name="System Bold" size="12.0" />
 							</font>
 						</Label>
-						<Label layoutX="38.0" layoutY="386.0" text="Mine Plan">
+						<Label layoutX="38.0" layoutY="386.0" text="Optimized Mine Plan">
 							<font>
 								<Font name="System Bold" size="12.0" />
 							</font>
@@ -138,9 +138,9 @@
 								<TableColumn fx:id="tableColumnBMn" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Mn" />
 								<TableColumn fx:id="tableColumnBP" prefWidth="50.0" style="-fx-alignment: CENTER;" text="P" />
 								<TableColumn fx:id="tableColumnBLOI" prefWidth="50.0" style="-fx-alignment: CENTER;" text="LOI" />
-								<TableColumn fx:id="tableColumnB50mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+50,00mm" />
-								<TableColumn fx:id="tableColumnB6_3mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+6,30mm" />
-								<TableColumn fx:id="tableColumnB0_15mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+0,15mm" />
+								<TableColumn fx:id="tableColumnB50mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+6,30mm" />
+								<TableColumn fx:id="tableColumnB6_3mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+0,15mm" />
+								<TableColumn fx:id="tableColumnB0_15mm" prefWidth="50.0" style="-fx-alignment: CENTER;" text="-0,15mm" />
 							</columns>
 						</TableView>
                   <Label layoutX="38.0" layoutY="173.0" text="Plant Boundaries (%)">
@@ -425,7 +425,7 @@
                      </font>
                   </Label>
                   <Line endX="620.0" layoutX="876.0" layoutY="406.0" startX="-110.0" />
-                  <Label layoutX="770.0" layoutY="9.0" text="Mining Managment - Initial Location">
+                  <Label layoutX="770.0" layoutY="9.0" text="Mining Managment - Position of trucks in the mine">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -445,7 +445,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="914.0" layoutY="116.0" prefHeight="18.0" prefWidth="29.0" text="Face">
+                  <Label layoutX="910.0" layoutY="116.0" prefHeight="18.0" prefWidth="42.0" text="Bench">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -548,7 +548,7 @@
 								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 							</columnResizePolicy>
 							<columns>
-								<TableColumn fx:id="tableColumnFaceAc" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Face" />
+								<TableColumn fx:id="tableColumnFaceAc" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Bench" />
 								<TableColumn fx:id="tableColumnAcT1" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T1" />
 								<TableColumn fx:id="tableColumnAcT2" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T2" />
 								<TableColumn fx:id="tableColumnAcT3" prefWidth="50.0" style="-fx-alignment: CENTER;" text="T3" />
@@ -575,12 +575,12 @@
 								<TableColumn fx:id="tableColumnPG4" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Mn" />
 								<TableColumn fx:id="tableColumnPG5" prefWidth="50.0" style="-fx-alignment: CENTER;" text="P" />
 								<TableColumn fx:id="tableColumnPG6" prefWidth="50.0" style="-fx-alignment: CENTER;" text="LOI" />
-								<TableColumn fx:id="tableColumnPG7" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+50,00mm" />
-								<TableColumn fx:id="tableColumnPG8" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+6,30mm" />
-								<TableColumn fx:id="tableColumnPG9" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+0,15mm" />
+								<TableColumn fx:id="tableColumnPG7" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+6,30mm" />
+								<TableColumn fx:id="tableColumnPG8" prefWidth="50.0" style="-fx-alignment: CENTER;" text="+0,15mm" />
+								<TableColumn fx:id="tableColumnPG9" prefWidth="50.0" style="-fx-alignment: CENTER;" text="-0,15mm" />
 							</columns>
                   </TableView>
-                  <Label layoutX="803.0" layoutY="742.0" text="Production Grade">
+                  <Label layoutX="803.0" layoutY="742.0" text="Current Grade">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -590,7 +590,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="12.0" layoutY="635.0" text="Mining Managment - Realized Mining Plan">
+                  <Label layoutX="12.0" layoutY="635.0" text="Mining Managment - Executed Mining Plan">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -637,13 +637,18 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="1319.0" layoutY="625.0" prefHeight="0.0" prefWidth="78.0" rotate="-65.0" text="REM">
+                  <Label layoutX="1313.0" layoutY="625.0" prefHeight="0.0" prefWidth="78.0" rotate="-65.0" text="Stripping ">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                   <TextField fx:id="Dat" editable="false" layoutX="1189.0" layoutY="442.0" style="-fx-alignment: CENTER" />
                   <Label layoutX="1247.0" layoutY="425.0" text="Date">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1330.0" layoutY="618.0" prefHeight="0.0" prefWidth="78.0" rotate="-65.0" text="Ratio">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
